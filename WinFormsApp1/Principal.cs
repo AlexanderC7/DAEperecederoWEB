@@ -16,7 +16,7 @@ namespace WinFormsApp1
             var request = new RestRequest("/employees/", Method.Get);
 
             var response = client.Get(request);
-            txtValue.Text=response.Content;
+            txtValue.Text = response.Content;
         }
 
         private void btnSet_Click(object sender, EventArgs e)
@@ -28,6 +28,41 @@ namespace WinFormsApp1
 
             var response = client.Post(request);
             MessageBox.Show("Response: " + response.StatusCode);
+        }
+
+        private void Empleados_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuAyuda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuArchivo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
