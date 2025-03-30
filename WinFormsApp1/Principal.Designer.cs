@@ -79,7 +79,7 @@
             menuAcciones.Name = "menuAcciones";
             menuAcciones.Size = new Size(103, 32);
             menuAcciones.Text = "Acciones";
-            menuAcciones.Click += toolStripMenuItem1_Click;
+            menuAcciones.Click += menuAcciones_Click;
             // 
             // menuItemAdicionar
             // 
@@ -87,7 +87,7 @@
             menuItemAdicionar.Name = "menuItemAdicionar";
             menuItemAdicionar.Size = new Size(278, 32);
             menuItemAdicionar.Text = "Adicionar";
-            menuItemAdicionar.Click += toolStripMenuItem2_Click;
+            menuItemAdicionar.Click += menuItemAdicionar_Click;
             // 
             // menuItemBuscar
             // 
@@ -95,7 +95,7 @@
             menuItemBuscar.Name = "menuItemBuscar";
             menuItemBuscar.Size = new Size(278, 32);
             menuItemBuscar.Text = "Buscar según criterio";
-            menuItemBuscar.Click += toolStripMenuItem3_Click;
+            menuItemBuscar.Click += menuItemBuscar_Click;
             // 
             // menuItemEliminar
             // 
@@ -139,7 +139,7 @@
             menuItemAcercade.Name = "menuItemAcercade";
             menuItemAcercade.Size = new Size(183, 32);
             menuItemAcercade.Text = "Acerca de";
-            menuItemAcercade.Click += acercaDeToolStripMenuItem_Click;
+            menuItemAcercade.Click += menuItemAcercade_Click;
             // 
             // lblTitulo
             // 
@@ -180,7 +180,7 @@
             Name = "Perecedero";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Principal Perecedero";
-            Load += Empleados_Load;
+            Load += Perecedero_Load;
             menuPrincipal.ResumeLayout(false);
             menuPrincipal.PerformLayout();
             ResumeLayout(false);

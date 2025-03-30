@@ -34,7 +34,11 @@
             lblCodigo = new Label();
             txtCodigo = new TextBox();
             lblPrecio = new Label();
-            ftxtPrecio = new MaskedTextBox();
+            txtPrecio = new TextBox();
+            lblCaducidad = new Label();
+            dateVencimiento = new DateTimePicker();
+            lblCantidad = new Label();
+            txtCantidad = new TextBox();
             SuspendLayout();
             // 
             // lblTitulo
@@ -89,20 +93,58 @@
             lblPrecio.TabIndex = 5;
             lblPrecio.Text = "Precio";
             // 
-            // ftxtPrecio
+            // txtPrecio
             // 
-            ftxtPrecio.Location = new Point(49, 265);
-            ftxtPrecio.Mask = "123,456";
-            ftxtPrecio.Name = "ftxtPrecio";
-            ftxtPrecio.Size = new Size(240, 27);
-            ftxtPrecio.TabIndex = 7;
+            txtPrecio.Location = new Point(49, 265);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(240, 27);
+            txtPrecio.TabIndex = 6;
+            // 
+            // lblCaducidad
+            // 
+            lblCaducidad.AutoSize = true;
+            lblCaducidad.Location = new Point(49, 326);
+            lblCaducidad.Name = "lblCaducidad";
+            lblCaducidad.Size = new Size(153, 20);
+            lblCaducidad.TabIndex = 7;
+            lblCaducidad.Text = "Fecha de vencimiento";
+            // 
+            // dateVencimiento
+            // 
+            dateVencimiento.Format = DateTimePickerFormat.Short;
+            dateVencimiento.Location = new Point(49, 349);
+            dateVencimiento.Name = "dateVencimiento";
+            dateVencimiento.Size = new Size(240, 27);
+            dateVencimiento.TabIndex = 8;
+            dateVencimiento.Value = new DateTime(2025, 3, 30, 12, 11, 40, 0);
+            dateVencimiento.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.AutoSize = true;
+            lblCantidad.Location = new Point(49, 411);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(69, 20);
+            lblCantidad.TabIndex = 9;
+            lblCantidad.Text = "Cantidad";
+            // 
+            // txtCantidad
+            // 
+            txtCantidad.Location = new Point(49, 434);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new Size(240, 27);
+            txtCantidad.TabIndex = 10;
             // 
             // PerecederoAgregar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(ftxtPrecio);
+            ClientSize = new Size(882, 553);
+            Controls.Add(txtCantidad);
+            Controls.Add(lblCantidad);
+            Controls.Add(dateVencimiento);
+            Controls.Add(lblCaducidad);
+            Controls.Add(txtPrecio);
             Controls.Add(lblPrecio);
             Controls.Add(txtCodigo);
             Controls.Add(lblCodigo);
@@ -126,6 +168,9 @@
         private TextBox txtCodigo;
         private Label lblPrecio;
         private TextBox txtPrecio;
-        private MaskedTextBox ftxtPrecio;
+        private Label lblCaducidad;
+        private DateTimePicker dateVencimiento;
+        private Label lblCantidad;
+        private TextBox txtCantidad;
     }
 }
