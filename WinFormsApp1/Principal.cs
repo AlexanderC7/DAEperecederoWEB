@@ -2,9 +2,9 @@ using RestSharp;
 
 namespace WinFormsApp1
 {
-    public partial class Empleados : Form
+    public partial class Perecedero : Form
     {
-        public Empleados()
+        public Perecedero()
         {
             InitializeComponent();
         }
@@ -52,7 +52,7 @@ namespace WinFormsApp1
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Equipo de trabajo:\n->Jhon Cartagena\n->Leandro Vergara\n->Alejandro Vargas\n->Juan Florez\n Versión: 1.0.0", "Acerca de...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuAyuda_Click(object sender, EventArgs e)
@@ -63,6 +63,11 @@ namespace WinFormsApp1
         private void menuArchivo_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuItemSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
