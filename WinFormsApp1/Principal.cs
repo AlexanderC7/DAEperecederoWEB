@@ -16,15 +16,15 @@ namespace WinFormsApp1
             var request = new RestRequest("/employees/", Method.Get);
 
             var response = client.Get(request);
-            txtValue.Text = response.Content;
+            
         }
 
         private void btnSet_Click(object sender, EventArgs e)
         {
-            var value = txtValue.Text.Trim();
+            
             var options = new RestClientOptions("http://localhost:8080");
             var client = new RestClient(options);
-            var request = new RestRequest("/employees/" + value);
+            var request = new RestRequest("/employees/");
 
             var response = client.Post(request);
             MessageBox.Show("Response: " + response.StatusCode);
@@ -68,6 +68,16 @@ namespace WinFormsApp1
         private void menuItemSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

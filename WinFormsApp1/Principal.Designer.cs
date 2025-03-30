@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnGet = new Button();
-            btnSet = new Button();
-            txtValue = new TextBox();
             menuPrincipal = new MenuStrip();
             menuArchivo = new ToolStripMenuItem();
             menuItemSalir = new ToolStripMenuItem();
@@ -43,35 +40,10 @@
             menuItemListarFiltro = new ToolStripMenuItem();
             menuAyuda = new ToolStripMenuItem();
             menuItemAcercade = new ToolStripMenuItem();
+            lblTitulo = new Label();
+            lblTituloTienda = new Label();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
-            // 
-            // btnGet
-            // 
-            btnGet.Location = new Point(508, 147);
-            btnGet.Name = "btnGet";
-            btnGet.Size = new Size(94, 30);
-            btnGet.TabIndex = 0;
-            btnGet.Text = "Get";
-            btnGet.UseVisualStyleBackColor = true;
-            btnGet.Click += btnGet_Click;
-            // 
-            // btnSet
-            // 
-            btnSet.Location = new Point(508, 197);
-            btnSet.Name = "btnSet";
-            btnSet.Size = new Size(94, 30);
-            btnSet.TabIndex = 1;
-            btnSet.Text = "Post";
-            btnSet.UseVisualStyleBackColor = true;
-            btnSet.Click += btnSet_Click;
-            // 
-            // txtValue
-            // 
-            txtValue.Location = new Point(228, 150);
-            txtValue.Name = "txtValue";
-            txtValue.Size = new Size(165, 27);
-            txtValue.TabIndex = 2;
             // 
             // menuPrincipal
             // 
@@ -97,7 +69,7 @@
             // 
             menuItemSalir.Image = SolicitudCliente.Properties.Resources.icon_salir;
             menuItemSalir.Name = "menuItemSalir";
-            menuItemSalir.Size = new Size(224, 32);
+            menuItemSalir.Size = new Size(136, 32);
             menuItemSalir.Text = "Salir";
             menuItemSalir.Click += menuItemSalir_Click;
             // 
@@ -165,21 +137,45 @@
             // 
             menuItemAcercade.Image = SolicitudCliente.Properties.Resources.icon_info;
             menuItemAcercade.Name = "menuItemAcercade";
-            menuItemAcercade.Size = new Size(224, 32);
+            menuItemAcercade.Size = new Size(183, 32);
             menuItemAcercade.Text = "Acerca de";
             menuItemAcercade.Click += acercaDeToolStripMenuItem_Click;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.LightSeaGreen;
+            lblTitulo.Location = new Point(90, 235);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(678, 81);
+            lblTitulo.TabIndex = 5;
+            lblTitulo.Text = "Productos Perecederos";
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitulo.Click += label1_Click;
+            // 
+            // lblTituloTienda
+            // 
+            lblTituloTienda.AutoSize = true;
+            lblTituloTienda.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblTituloTienda.ForeColor = Color.LightSalmon;
+            lblTituloTienda.Location = new Point(331, 316);
+            lblTituloTienda.Name = "lblTituloTienda";
+            lblTituloTienda.Size = new Size(437, 31);
+            lblTituloTienda.TabIndex = 6;
+            lblTituloTienda.Text = "Supermercado \"Dónde los electrónicos\"";
+            lblTituloTienda.Click += label1_Click_1;
             // 
             // Perecedero
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(882, 633);
+            ClientSize = new Size(882, 553);
+            Controls.Add(lblTituloTienda);
+            Controls.Add(lblTitulo);
             Controls.Add(menuPrincipal);
-            Controls.Add(txtValue);
-            Controls.Add(btnSet);
-            Controls.Add(btnGet);
             Font = new Font("Segoe UI", 9F);
-            Location = new Point(800, 800);
+            Location = new Point(900, 800);
             MainMenuStrip = menuPrincipal;
             Name = "Perecedero";
             Text = "Principal Perecedero";
@@ -191,10 +187,6 @@
         }
 
         #endregion
-
-        private Button btnGet;
-        private Button btnSet;
-        private TextBox txtValue;
         private MenuStrip menuPrincipal;
         private ToolStripMenuItem menuAcciones;
         private ToolStripMenuItem menuItemAdicionar;
@@ -207,5 +199,7 @@
         private ToolStripMenuItem menuItemListarFiltro;
         private ToolStripMenuItem menuAyuda;
         private ToolStripMenuItem menuItemAcercade;
+        private Label lblTitulo;
+        private Label lblTituloTienda;
     }
 }
