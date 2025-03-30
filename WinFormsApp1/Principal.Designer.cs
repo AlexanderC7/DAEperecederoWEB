@@ -178,6 +178,7 @@
             Location = new Point(900, 800);
             MainMenuStrip = menuPrincipal;
             Name = "Perecedero";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Principal Perecedero";
             Load += Empleados_Load;
             menuPrincipal.ResumeLayout(false);
