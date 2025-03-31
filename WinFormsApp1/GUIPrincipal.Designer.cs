@@ -103,6 +103,7 @@
             menuItemEliminar.Name = "menuItemEliminar";
             menuItemEliminar.Size = new Size(278, 32);
             menuItemEliminar.Text = "Eliminar";
+            menuItemEliminar.Click += menuItemEliminar_Click;
             // 
             // menuItemActualizar
             // 

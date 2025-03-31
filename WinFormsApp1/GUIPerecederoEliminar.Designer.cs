@@ -1,6 +1,6 @@
 ﻿namespace SolicitudCliente
 {
-    partial class GUIPerecederoBuscar
+    partial class GUIPerecederoEliminar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblTitulo = new Label();
-            cmbParametro = new ComboBox();
-            lblParametros = new Label();
-            txtValor = new TextBox();
-            lblValor = new Label();
-            btnConsultar = new Button();
             btnCerrar = new Button();
-            lblEstadoConsulta = new Label();
+            btnConsultar = new Button();
+            lblValor = new Label();
+            txtValor = new TextBox();
+            lblParametros = new Label();
+            cmbParametro = new ComboBox();
+            lblTitulo = new Label();
             panelResultados = new Panel();
             dateVencimiento = new DateTimePicker();
             lblCaducidad = new Label();
@@ -47,20 +46,61 @@
             lblCodigo = new Label();
             txtNombre = new TextBox();
             lblNombre = new Label();
+            lblEstadoConsulta = new Label();
+            btnEliminar = new Button();
             panelResultados.SuspendLayout();
             SuspendLayout();
             // 
-            // lblTitulo
+            // btnCerrar
             // 
-            lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.ForeColor = Color.LightSeaGreen;
-            lblTitulo.Location = new Point(227, 9);
-            lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(420, 41);
-            lblTitulo.TabIndex = 1;
-            lblTitulo.Text = "BÚSQUEDA DE PERECEDERO";
-            lblTitulo.Click += lblTitulo_Click;
+            btnCerrar.BackColor = Color.MediumTurquoise;
+            btnCerrar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCerrar.Location = new Point(176, 190);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(537, 40);
+            btnCerrar.TabIndex = 20;
+            btnCerrar.Text = "Volver";
+            btnCerrar.UseVisualStyleBackColor = false;
+            // 
+            // btnConsultar
+            // 
+            btnConsultar.BackColor = Color.LightSalmon;
+            btnConsultar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConsultar.Location = new Point(176, 144);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(537, 40);
+            btnConsultar.TabIndex = 19;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = false;
+            // 
+            // lblValor
+            // 
+            lblValor.AutoSize = true;
+            lblValor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblValor.Location = new Point(413, 59);
+            lblValor.Name = "lblValor";
+            lblValor.Size = new Size(61, 28);
+            lblValor.TabIndex = 18;
+            lblValor.Text = "Valor:";
+            // 
+            // txtValor
+            // 
+            txtValor.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtValor.Location = new Point(413, 94);
+            txtValor.Name = "txtValor";
+            txtValor.PlaceholderText = "Ingresa el valor a buscar";
+            txtValor.Size = new Size(300, 34);
+            txtValor.TabIndex = 17;
+            // 
+            // lblParametros
+            // 
+            lblParametros.AutoSize = true;
+            lblParametros.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblParametros.Location = new Point(176, 59);
+            lblParametros.Name = "lblParametros";
+            lblParametros.Size = new Size(106, 28);
+            lblParametros.TabIndex = 16;
+            lblParametros.Text = "Parámetro:";
             // 
             // cmbParametro
             // 
@@ -68,74 +108,21 @@
             cmbParametro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbParametro.FormattingEnabled = true;
             cmbParametro.Items.AddRange(new object[] { "Nombre", "Código", "Precio", "Cantidad", "Fecha vencimiento" });
-            cmbParametro.Location = new Point(164, 109);
+            cmbParametro.Location = new Point(176, 92);
             cmbParametro.Name = "cmbParametro";
             cmbParametro.Size = new Size(190, 36);
-            cmbParametro.TabIndex = 2;
+            cmbParametro.TabIndex = 15;
             // 
-            // lblParametros
+            // lblTitulo
             // 
-            lblParametros.AutoSize = true;
-            lblParametros.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblParametros.Location = new Point(164, 76);
-            lblParametros.Name = "lblParametros";
-            lblParametros.Size = new Size(106, 28);
-            lblParametros.TabIndex = 3;
-            lblParametros.Text = "Parámetro:";
-            // 
-            // txtValor
-            // 
-            txtValor.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            txtValor.Location = new Point(401, 111);
-            txtValor.Name = "txtValor";
-            txtValor.PlaceholderText = "Ingresa el valor a buscar";
-            txtValor.Size = new Size(300, 34);
-            txtValor.TabIndex = 4;
-            // 
-            // lblValor
-            // 
-            lblValor.AutoSize = true;
-            lblValor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblValor.Location = new Point(401, 76);
-            lblValor.Name = "lblValor";
-            lblValor.Size = new Size(61, 28);
-            lblValor.TabIndex = 5;
-            lblValor.Text = "Valor:";
-            // 
-            // btnConsultar
-            // 
-            btnConsultar.BackColor = Color.LightSalmon;
-            btnConsultar.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConsultar.Location = new Point(164, 161);
-            btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(537, 50);
-            btnConsultar.TabIndex = 6;
-            btnConsultar.Text = "Consultar";
-            btnConsultar.UseVisualStyleBackColor = false;
-            // 
-            // btnCerrar
-            // 
-            btnCerrar.BackColor = Color.MediumTurquoise;
-            btnCerrar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCerrar.Location = new Point(164, 217);
-            btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(537, 40);
-            btnCerrar.TabIndex = 13;
-            btnCerrar.Text = "Volver";
-            btnCerrar.UseVisualStyleBackColor = false;
-            btnCerrar.Click += btnCerrar_Click;
-            // 
-            // lblEstadoConsulta
-            // 
-            lblEstadoConsulta.AutoSize = true;
-            lblEstadoConsulta.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEstadoConsulta.ForeColor = Color.IndianRed;
-            lblEstadoConsulta.Location = new Point(361, 277);
-            lblEstadoConsulta.Name = "lblEstadoConsulta";
-            lblEstadoConsulta.Size = new Size(134, 28);
-            lblEstadoConsulta.TabIndex = 14;
-            lblEstadoConsulta.Text = "Sin resultados";
-            lblEstadoConsulta.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.LightSeaGreen;
+            lblTitulo.Location = new Point(231, 6);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(411, 41);
+            lblTitulo.TabIndex = 14;
+            lblTitulo.Text = "ELIMINAR UN PERECEDERO";
             // 
             // panelResultados
             // 
@@ -150,10 +137,10 @@
             panelResultados.Controls.Add(lblCodigo);
             panelResultados.Controls.Add(txtNombre);
             panelResultados.Controls.Add(lblNombre);
-            panelResultados.Location = new Point(23, 318);
+            panelResultados.Location = new Point(23, 264);
             panelResultados.Name = "panelResultados";
             panelResultados.Size = new Size(828, 223);
-            panelResultados.TabIndex = 15;
+            panelResultados.TabIndex = 21;
             // 
             // dateVencimiento
             // 
@@ -251,13 +238,39 @@
             lblNombre.TabIndex = 5;
             lblNombre.Text = "Nombre";
             // 
-            // GUIPerecederoBuscar
+            // lblEstadoConsulta
+            // 
+            lblEstadoConsulta.AutoSize = true;
+            lblEstadoConsulta.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEstadoConsulta.ForeColor = Color.IndianRed;
+            lblEstadoConsulta.Location = new Point(378, 233);
+            lblEstadoConsulta.Name = "lblEstadoConsulta";
+            lblEstadoConsulta.Size = new Size(134, 28);
+            lblEstadoConsulta.TabIndex = 18;
+            lblEstadoConsulta.Text = "Sin resultados";
+            lblEstadoConsulta.TextAlign = ContentAlignment.MiddleCenter;
+            lblEstadoConsulta.Click += lblEstadoConsulta_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.BackColor = Color.LightCoral;
+            btnEliminar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminar.ForeColor = SystemColors.ActiveCaptionText;
+            btnEliminar.Location = new Point(176, 493);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(537, 50);
+            btnEliminar.TabIndex = 22;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            // 
+            // GUIPerecederoEliminar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 553);
-            Controls.Add(panelResultados);
+            Controls.Add(btnEliminar);
             Controls.Add(lblEstadoConsulta);
+            Controls.Add(panelResultados);
             Controls.Add(btnCerrar);
             Controls.Add(btnConsultar);
             Controls.Add(lblValor);
@@ -265,10 +278,9 @@
             Controls.Add(lblParametros);
             Controls.Add(cmbParametro);
             Controls.Add(lblTitulo);
-            Name = "GUIPerecederoBuscar";
+            Name = "GUIPerecederoEliminar";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "GUIPerecederoBuscar";
-            Load += GUIPerecederoBuscar_Load;
+            Text = "GUIPerecederoEliminar";
             panelResultados.ResumeLayout(false);
             panelResultados.PerformLayout();
             ResumeLayout(false);
@@ -277,24 +289,25 @@
 
         #endregion
 
-        private Label lblTitulo;
-        private ComboBox cmbParametro;
-        private Label lblParametros;
-        private TextBox txtValor;
-        private Label lblValor;
-        private Button btnConsultar;
         private Button btnCerrar;
-        private Label lblEstadoConsulta;
+        private Button btnConsultar;
+        private Label lblValor;
+        private TextBox txtValor;
+        private Label lblParametros;
+        private ComboBox cmbParametro;
+        private Label lblTitulo;
         private Panel panelResultados;
-        private TextBox txtCodigo;
-        private Label lblCodigo;
-        private TextBox txtNombre;
-        private Label lblNombre;
+        private DateTimePicker dateVencimiento;
+        private Label lblCaducidad;
         private TextBox txtCantidad;
         private Label lblCantidad;
         private TextBox txtPrecio;
         private Label lblPrecio;
-        private DateTimePicker dateVencimiento;
-        private Label lblCaducidad;
+        private TextBox txtCodigo;
+        private Label lblCodigo;
+        private TextBox txtNombre;
+        private Label lblNombre;
+        private Label lblEstadoConsulta;
+        private Button btnEliminar;
     }
 }

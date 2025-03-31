@@ -38,19 +38,19 @@ namespace WinFormsApp1
 
         private void menuAcciones_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void menuItemAdicionar_Click(object sender, EventArgs e)
         {
-            GUIPerecederoAgregar perecederoAgregar = new GUIPerecederoAgregar();
-            perecederoAgregar.Show();
+            GUIPerecederoAgregar gUIPerecederoAgregarperecederoAgregar = new GUIPerecederoAgregar();
+            gUIPerecederoAgregarperecederoAgregar.Show();
         }
 
         private void menuItemBuscar_Click(object sender, EventArgs e)
         {
-            GUIPerecederoBuscar perecederoBuscar = new GUIPerecederoBuscar();
-            perecederoBuscar.Show();
+            GUIPerecederoBuscar gUIPerecederoBuscar = new GUIPerecederoBuscar();
+            gUIPerecederoBuscar.Show();
         }
 
         private void menuItemAcercade_Click(object sender, EventArgs e)
@@ -81,6 +81,12 @@ namespace WinFormsApp1
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuItemEliminar_Click(object sender, EventArgs e)
+        {
+            GUIPerecederoEliminar gUIPerecederoEliminar = new GUIPerecederoEliminar();
+            gUIPerecederoEliminar.Show();
         }
     }
 }
