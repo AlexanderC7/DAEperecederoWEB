@@ -49,7 +49,8 @@ namespace WinFormsApp1
 
         private void menuItemBuscar_Click(object sender, EventArgs e)
         {
-
+            GUIPerecederoBuscar perecederoBuscar = new GUIPerecederoBuscar();
+            perecederoBuscar.Show();
         }
 
         private void menuItemAcercade_Click(object sender, EventArgs e)

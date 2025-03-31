@@ -161,7 +161,7 @@
             // 
             // btnCerrar
             // 
-            btnCerrar.BackColor = Color.Teal;
+            btnCerrar.BackColor = Color.MediumTurquoise;
             btnCerrar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCerrar.Location = new Point(518, 346);
             btnCerrar.Name = "btnCerrar";
@@ -171,7 +171,7 @@
             btnCerrar.UseVisualStyleBackColor = false;
             btnCerrar.Click += btnCerrar_Click;
             // 
-            // PerecederoAgregar
+            // GUIPerecederoAgregar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -189,7 +189,7 @@
             Controls.Add(txtNombre);
             Controls.Add(lblNombre);
             Controls.Add(lblTitulo);
-            Name = "PerecederoAgregar";
+            Name = "GUIPerecederoAgregar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PerecederoAgregar";
             Load += PerecederoAgregar_Load;
