@@ -1,6 +1,6 @@
 ﻿namespace SolicitudCliente
 {
-    partial class PerecederoAgregar
+    partial class GUIPerecederoAgregar
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,8 @@
             dateVencimiento = new DateTimePicker();
             lblCantidad = new Label();
             txtCantidad = new TextBox();
+            btnCrear = new Button();
+            btnCerrar = new Button();
             SuspendLayout();
             // 
             // lblTitulo
@@ -46,7 +48,7 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitulo.ForeColor = Color.LightSeaGreen;
-            lblTitulo.Location = new Point(12, 9);
+            lblTitulo.Location = new Point(211, 9);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(465, 41);
             lblTitulo.TabIndex = 0;
@@ -55,66 +57,74 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(49, 74);
+            lblNombre.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(114, 89);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(64, 20);
+            lblNombre.Size = new Size(87, 28);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(49, 97);
+            txtNombre.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombre.Location = new Point(114, 120);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(240, 27);
+            txtNombre.Size = new Size(240, 31);
             txtNombre.TabIndex = 2;
             // 
             // lblCodigo
             // 
             lblCodigo.AutoSize = true;
-            lblCodigo.Location = new Point(49, 154);
+            lblCodigo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCodigo.Location = new Point(114, 169);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new Size(58, 20);
+            lblCodigo.Size = new Size(77, 28);
             lblCodigo.TabIndex = 3;
             lblCodigo.Text = "Código";
             // 
             // txtCodigo
             // 
-            txtCodigo.Location = new Point(49, 177);
+            txtCodigo.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCodigo.Location = new Point(114, 200);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(240, 27);
+            txtCodigo.Size = new Size(240, 31);
             txtCodigo.TabIndex = 4;
             // 
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(49, 242);
+            lblPrecio.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrecio.Location = new Point(114, 257);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(50, 20);
+            lblPrecio.Size = new Size(68, 28);
             lblPrecio.TabIndex = 5;
             lblPrecio.Text = "Precio";
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(49, 265);
+            txtPrecio.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPrecio.Location = new Point(114, 288);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new Size(240, 27);
+            txtPrecio.Size = new Size(240, 31);
             txtPrecio.TabIndex = 6;
             // 
             // lblCaducidad
             // 
             lblCaducidad.AutoSize = true;
-            lblCaducidad.Location = new Point(49, 326);
+            lblCaducidad.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCaducidad.Location = new Point(114, 419);
             lblCaducidad.Name = "lblCaducidad";
-            lblCaducidad.Size = new Size(153, 20);
+            lblCaducidad.Size = new Size(211, 28);
             lblCaducidad.TabIndex = 7;
             lblCaducidad.Text = "Fecha de vencimiento";
             // 
             // dateVencimiento
             // 
+            dateVencimiento.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateVencimiento.Format = DateTimePickerFormat.Short;
-            dateVencimiento.Location = new Point(49, 349);
+            dateVencimiento.Location = new Point(114, 450);
             dateVencimiento.Name = "dateVencimiento";
-            dateVencimiento.Size = new Size(240, 27);
+            dateVencimiento.Size = new Size(240, 31);
             dateVencimiento.TabIndex = 8;
             dateVencimiento.Value = new DateTime(2025, 3, 30, 12, 11, 40, 0);
             dateVencimiento.ValueChanged += dateTimePicker1_ValueChanged;
@@ -122,24 +132,52 @@
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(49, 411);
+            lblCantidad.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidad.Location = new Point(114, 338);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(69, 20);
+            lblCantidad.Size = new Size(92, 28);
             lblCantidad.TabIndex = 9;
             lblCantidad.Text = "Cantidad";
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(49, 434);
+            txtCantidad.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCantidad.Location = new Point(114, 369);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(240, 27);
+            txtCantidad.Size = new Size(240, 31);
             txtCantidad.TabIndex = 10;
+            // 
+            // btnCrear
+            // 
+            btnCrear.BackColor = Color.LightSalmon;
+            btnCrear.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCrear.Location = new Point(518, 238);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(240, 60);
+            btnCrear.TabIndex = 11;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = false;
+            btnCrear.Click += btnCrear_Click;
+            // 
+            // btnCerrar
+            // 
+            btnCerrar.BackColor = Color.Teal;
+            btnCerrar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCerrar.Location = new Point(518, 346);
+            btnCerrar.Name = "btnCerrar";
+            btnCerrar.Size = new Size(240, 40);
+            btnCerrar.TabIndex = 12;
+            btnCerrar.Text = "Volver";
+            btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // PerecederoAgregar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 553);
+            Controls.Add(btnCerrar);
+            Controls.Add(btnCrear);
             Controls.Add(txtCantidad);
             Controls.Add(lblCantidad);
             Controls.Add(dateVencimiento);
@@ -172,5 +210,7 @@
         private DateTimePicker dateVencimiento;
         private Label lblCantidad;
         private TextBox txtCantidad;
+        private Button btnCrear;
+        private Button btnCerrar;
     }
 }

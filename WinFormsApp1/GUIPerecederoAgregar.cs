@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SolicitudCliente
 {
-    public partial class PerecederoAgregar : Form
+    public partial class GUIPerecederoAgregar : Form
     {
-        public PerecederoAgregar()
+        public GUIPerecederoAgregar()
         {
             InitializeComponent();
         }
@@ -25,6 +25,16 @@ namespace SolicitudCliente
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Producto creado", "Acción realizada");
         }
     }
 }

@@ -43,7 +43,7 @@ namespace WinFormsApp1
 
         private void menuItemAdicionar_Click(object sender, EventArgs e)
         {
-            PerecederoAgregar perecederoAgregar = new PerecederoAgregar();
+            GUIPerecederoAgregar perecederoAgregar = new GUIPerecederoAgregar();
             perecederoAgregar.Show();
         }
 
