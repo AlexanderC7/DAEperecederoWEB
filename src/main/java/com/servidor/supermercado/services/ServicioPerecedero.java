@@ -17,4 +17,15 @@ public class ServicioPerecedero {
         Perecedero pere2 = new Perecedero("Leche", 124, 9200.0, 10, LocalDateTime.now());
         perecederos.add(pere2);
     }
+
+    public Perecedero buscarPerecederoPorNombre(String nombre){
+        for (perecederos){
+            System.out.println("Hola");
+        }
+    }
+
+    public Perecedero agregarPerecedero(){
+        //Codigo
+        return null;
+    }
 }

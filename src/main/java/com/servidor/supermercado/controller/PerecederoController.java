@@ -12,7 +12,7 @@ import org.springframework.web.servlet.function.EntityResponse;
 @RequestMapping(value = "/perecederos")
 public class PerecederoController {
 
-    private ServicioPerecedero servicioPerecedero;
+    private ServicioPerecedero servicioPerecedero = new ServicioPerecedero();
 
     @GetMapping("/")
     public ResponseEntity<String> devolverPrincipal(){
@@ -21,8 +21,13 @@ public class PerecederoController {
     }
 
     @GetMapping("/healthStatus")
-    public String devolverEstado(){
-        return "Estado: OK";
+    public ResponseEntity<String> devolverEstado(){
+        return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("/add")
+    public ResponseEntity<String> agregarPerecedero(){
+        return ResponseEntity.ok("Producto Creado");
     }
 
     @GetMapping("/find")
@@ -31,5 +36,7 @@ public class PerecederoController {
         respuesta = servicioPerecedero.getPerecederos().toString();
         return respuesta;
     }
+
+
 
 }
