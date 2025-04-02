@@ -69,4 +69,8 @@ public class ServicioPerecedero {
         //Codigo
         return null;
     }
+
+    public ArrayList<Perecedero> listarPerecederos(){
+        return  null;
+    }
 }

@@ -46,6 +46,13 @@ public class PerecederoController {
         return ResponseEntity.ok(perecederoEncontrado);
     }
 
+    @GetMapping("/delete")
+    public ResponseEntity<String> eliminarPerecedero(){
+        return ResponseEntity.ok("Ok");
+    }
 
-
+    @GetMapping("/list")
+    public ResponseEntity<String> listarPerecedero(){
+        return ResponseEntity.ok("Ok");
+    }
 }
