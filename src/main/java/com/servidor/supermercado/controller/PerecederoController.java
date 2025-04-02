@@ -5,8 +5,10 @@ import com.servidor.supermercado.services.ServicioPerecedero;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.EntityResponse;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping(value = "/perecederos")
@@ -31,10 +33,17 @@ public class PerecederoController {
     }
 
     @GetMapping("/find")
-    public String buscarPerecedero(){
-        String respuesta;
-        respuesta = servicioPerecedero.getPerecederos().toString();
-        return respuesta;
+    public ResponseEntity<Perecedero> buscarPerecedero(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
+        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        Perecedero perecederoEncontrado = servicioPerecedero.buscarPerecedero(nombre,codigo,precio,cantidad,fechaVencimiento);
+
+        if (perecederoEncontrado == null){
+            ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(perecederoEncontrado);
     }
 
 

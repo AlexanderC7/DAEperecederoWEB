@@ -2,6 +2,8 @@ package com.servidor.supermercado.services;
 
 import com.servidor.supermercado.model.Perecedero;
 import lombok.Getter;
+import org.springframework.cglib.core.Local;
+import org.springframework.core.annotation.AnnotationUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,10 +20,49 @@ public class ServicioPerecedero {
         perecederos.add(pere2);
     }
 
-    public Perecedero buscarPerecederoPorNombre(String nombre){
-        for (perecederos){
-            System.out.println("Hola");
+    public Perecedero buscarPerecedero(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento){
+        Perecedero resultado;
+
+        if (nombre != null){
+            resultado = buscarPerecederoPorNombre(nombre);
+        } else if (codigo != null) {
+            resultado = buscarPerecederoPorCodigo(codigo);
+        } else if (precio != null) {
+            resultado = buscarPerecederoPorPrecio(precio);
+        } else if (cantidad != null) {
+            resultado = buscarPerecederoPorCantidad(cantidad);
+        } else if (fechaVencimiento != null) {
+            resultado = buscarPerecederoPorVencimiento(fechaVencimiento);
+        } else {
+            resultado = null;
         }
+
+        return resultado;
+    }
+
+    private Perecedero buscarPerecederoPorNombre(String nombre){
+        //Aqui por nombre
+        return null;
+    }
+
+    private Perecedero buscarPerecederoPorCodigo(Integer codigo){
+        //Aqui por codigo
+        return null;
+    }
+
+    private Perecedero buscarPerecederoPorPrecio(Double precio){
+        //Aqui por precio
+        return null;
+    }
+
+    private Perecedero buscarPerecederoPorCantidad(Integer cantidad){
+        //Aqui por cantidad
+        return null;
+    }
+
+    private Perecedero buscarPerecederoPorVencimiento(LocalDateTime fechaVencimiento){
+        //Aqui por la fecha de vencimiento
+        return null;
     }
 
     public Perecedero agregarPerecedero(){
