@@ -1,5 +1,6 @@
 package com.servidor.supermercado.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/perecederos")
@@ -52,7 +54,14 @@ public class PerecederoController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<String> listarPerecedero(){
-        return ResponseEntity.ok("Ok");
+    public ResponseEntity<JsonNode> listarPerecederos() {
+        JsonNode listaPerecederos = servicioPerecedero.listarPerecederos();
+
+        if (listaPerecederos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(listaPerecederos);
     }
 }
+

@@ -1,5 +1,7 @@
 package com.servidor.supermercado.services;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.servidor.supermercado.model.Perecedero;
 import lombok.Getter;
 import org.springframework.cglib.core.Local;
@@ -83,7 +85,18 @@ public class ServicioPerecedero {
         return null;
     }
 
-    public ArrayList<Perecedero> listarPerecederos(){
-        return  null;
+    public JsonNode listarPerecederos(){
+
+        try {
+            // Convertir la lista a un JsonNode
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.valueToTree(listarPerecederos());
+            System.out.println("JSON generado: " + jsonNode.toPrettyString());
+            return jsonNode;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
