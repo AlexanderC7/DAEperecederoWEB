@@ -68,6 +68,50 @@ namespace SolicitudCliente
                 MessageBox.Show("La fecha de vencimiento no puede ser pasada.");
                 return;
             }
+
+            var options = new RestClientOptions("http://localhost:8080");
+            var client = new RestClient(options);
+            var request = new RestRequest("/perecederos/update");
+
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddBody(new
+            {
+                nombre = nombre,
+                codigo = codigo,
+                precio = precio,
+                cantidad = cantidad,
+                fechaVencimiento = fechaVencimiento,
+
+            });
+
+            var response = client.Post(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                // Mostrar mensaje de éxito
+                MessageBox.Show("Producto actualizado", "Estado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpiar los campos después de agregar el producto
+                txtNombre.Clear();
+                txtCodigo.Clear();
+                txtPrecio.Clear();
+                txtCantidad.Clear();
+                dateVencimiento.Value = DateTime.Now;
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                MessageBox.Show("Producto no encontrado.");
+            }
+            else
+            {
+                MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
+            }
+
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
