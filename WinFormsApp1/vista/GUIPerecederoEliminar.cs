@@ -66,7 +66,7 @@ namespace SolicitudCliente
 
             var response = client.Get(request);
 
-            if (response.IsSuccessful)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 // Deserializar el JSON a un objeto Perecedero
                 perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
@@ -98,7 +98,7 @@ namespace SolicitudCliente
             var request = new RestRequest("/perecederos/delete");
             request.AddParameter("codigo", perecedero.codigo);
 
-            var response = client.Post(request);
+            var response = client.Get(request);
 
             if (response.IsSuccessful)
             {

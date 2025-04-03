@@ -86,7 +86,7 @@ namespace SolicitudCliente
 
                 var response = client.Post(request);
 
-                if (response.IsSuccessful)
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     // Mostrar mensaje de éxito
                     MessageBox.Show("Producto Creado", "Estado", MessageBoxButtons.OK, MessageBoxIcon.Information);
