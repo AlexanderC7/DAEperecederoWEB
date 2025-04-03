@@ -34,30 +34,47 @@ public class ServicioPerecedero {
     }
 
     private Perecedero buscarPerecederoPorNombre(String nombre){
-        for (int i = 0; i < perecederos.size(); i++) {
-            if (nombre.equals(perecederos.get(i).getNombre())) {
-                return perecederos.get(i);
+        for (Perecedero perecedero : perecederos) {
+            if (nombre.equals(perecedero.getNombre())) {
+                return perecedero;
             }
         }
+        return null;
     }
 
     private Perecedero buscarPerecederoPorCodigo(Integer codigo){
-        //Aqui por codigo
+        for (Perecedero perecedero : perecederos) {
+            if (codigo.equals(perecedero.getCodigo())) {
+                return perecedero;
+            }
+        }
         return null;
     }
 
     private Perecedero buscarPerecederoPorPrecio(Double precio){
-        //Aqui por precio
+        for (Perecedero perecedero : perecederos) {
+            if (precio.equals(perecedero.getPrecio())) {
+                return perecedero;
+            }
+        }
         return null;
     }
 
     private Perecedero buscarPerecederoPorCantidad(Integer cantidad){
-        //Aqui por cantidad
+        for (Perecedero perecedero : perecederos) {
+            if (cantidad.equals(perecedero.getCantidad())) {
+                return perecedero;
+            }
+        }
         return null;
     }
 
     private Perecedero buscarPerecederoPorVencimiento(LocalDateTime fechaVencimiento){
-        //Aqui por la fecha de vencimiento
+        for (Perecedero perecedero : perecederos) {
+            if (fechaVencimiento.equals(perecedero.getFechaVencimiento())) {
+                return perecedero;
+            }
+        }
         return null;
     }
 
