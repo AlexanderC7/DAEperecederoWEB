@@ -81,9 +81,8 @@ public class ServicioPerecedero {
         return null;
     }
 
-    public Perecedero agregarPerecedero(){
-        //Codigo
-        return null;
+    public boolean agregarPerecedero(Perecedero perecedero){
+        return perecederos.add(perecedero);
     }
 
     public boolean eliminarPerecedero(Integer codigo) {

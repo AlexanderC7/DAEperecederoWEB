@@ -26,9 +26,19 @@ public class PerecederoController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("/add")
-    public ResponseEntity<String> agregarPerecedero(){
-        return ResponseEntity.ok("Producto Creado");
+    @PostMapping("/add")
+    public ResponseEntity<String> agregarPerecedero(@RequestBody Perecedero perecedero){
+        if (perecedero == null) {
+            ResponseEntity.badRequest().body("No es el objeto esperado");
+        }
+
+        boolean agregado = servicioPerecedero.agregarPerecedero(perecedero);
+
+        if (agregado) {
+            return ResponseEntity.ok("Agregado correctamente");
+        } else {
+            return ResponseEntity.internalServerError().body("No fue posible agregar");
+        }
     }
 
     @GetMapping("/find")
