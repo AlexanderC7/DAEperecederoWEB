@@ -49,8 +49,18 @@ public class PerecederoController {
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<String> eliminarPerecedero(){
-        return ResponseEntity.ok("Ok");
+    public ResponseEntity<String> eliminarPerecedero(@RequestParam Integer codigo) {
+        if (codigo == null) {
+            return ResponseEntity.badRequest().body("El código del perecedero no puede ser nulo");
+        }
+    
+        boolean eliminado = servicioPerecedero.eliminarPerecedero(codigo);
+    
+        if (eliminado) {
+            return ResponseEntity.ok("Perecedero eliminado correctamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/list")
