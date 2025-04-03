@@ -18,7 +18,7 @@ public class PerecederoController {
 
     @GetMapping("/")
     public ResponseEntity<String> devolverPrincipal(){
-        servicioPerecedero.llenarListaPrueba();
+
         return ResponseEntity.ok("Perecederos añadidos correctamente");
     }
 
