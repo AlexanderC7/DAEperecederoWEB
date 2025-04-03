@@ -88,5 +88,11 @@ namespace WinFormsApp1
             GUIPerecederoEliminar gUIPerecederoEliminar = new GUIPerecederoEliminar();
             gUIPerecederoEliminar.Show();
         }
+
+        private void menuItemListar_Click(object sender, EventArgs e)
+        {
+            GUIPerecederoListar gUIPerecederoListar = new GUIPerecederoListar();
+            gUIPerecederoListar.Show();
+        }
     }
 }

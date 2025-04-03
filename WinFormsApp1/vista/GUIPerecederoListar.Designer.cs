@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             lblTitulo = new Label();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // lblTitulo
@@ -43,15 +45,27 @@
             lblTitulo.Text = "LISTAR TODOS PERECEDEROS";
             lblTitulo.TextAlign = ContentAlignment.TopCenter;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 64);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(858, 477);
+            dataGridView1.TabIndex = 25;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
             // GUIPerecederoListar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 553);
+            Controls.Add(dataGridView1);
             Controls.Add(lblTitulo);
             Name = "GUIPerecederoListar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GUIPerecederoListar";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -59,5 +73,6 @@
         #endregion
 
         private Label lblTitulo;
+        private DataGridView dataGridView1;
     }
 }

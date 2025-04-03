@@ -118,6 +118,7 @@
             menuItemListar.Name = "menuItemListar";
             menuItemListar.Size = new Size(278, 32);
             menuItemListar.Text = "Listar";
+            menuItemListar.Click += menuItemListar_Click;
             // 
             // menuItemListarFiltro
             // 
