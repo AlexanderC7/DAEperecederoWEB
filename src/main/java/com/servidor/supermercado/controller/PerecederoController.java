@@ -103,7 +103,11 @@ public class PerecederoController {
 
         JsonNode jsonPerecederos = servicioPerecedero.listarPerecederosPorFiltro(nombre, codigo, precio, cantidad, fechaVencimiento);
 
-        return ResponseEntity.ok(null);
+        if (jsonPerecederos == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(jsonPerecederos);
 
 
     }
