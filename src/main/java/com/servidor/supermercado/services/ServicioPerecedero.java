@@ -119,19 +119,24 @@ public class ServicioPerecedero {
     }
 
     public JsonNode listarPerecederosPorFiltro(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento) {
-        ArrayList<Perecedero> perecederoFiltrado;
-        perecederoFiltrado = null;
+        ArrayList<Perecedero> perecederoFiltrado = new ArrayList<>();
+        ArrayList<Perecedero> listaAuxiliar;
 
         if (nombre != null){
-            perecederoFiltrado = listarPerecederoPorNombre(nombre);
+            listaAuxiliar = listarPerecederoPorNombre(nombre);
+            perecederoFiltrado.addAll(listaAuxiliar);
         } if (codigo != null) {
-            perecederoFiltrado = listarPerecederoPorCodigo(codigo);
+            listaAuxiliar = listarPerecederoPorCodigo(codigo);
+            perecederoFiltrado.addAll(listaAuxiliar);
         } if (precio != null) {
-            perecederoFiltrado = listarPerecederoPorPrecio(precio);
+            listaAuxiliar = listarPerecederoPorPrecio(precio);
+            perecederoFiltrado.addAll(listaAuxiliar);
         } if (cantidad != null) {
-            perecederoFiltrado = listarPerecederoPorCantidad(cantidad);
+            listaAuxiliar = listarPerecederoPorCantidad(cantidad);
+            perecederoFiltrado.addAll(listaAuxiliar);
         } if (fechaVencimiento != null) {
-            perecederoFiltrado = listarPerecederoPorVencimiento(fechaVencimiento);
+            listaAuxiliar = listarPerecederoPorVencimiento(fechaVencimiento);
+            perecederoFiltrado.addAll(listaAuxiliar);
         }
 
         return objectMapper.valueToTree(perecederoFiltrado);
