@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using SolicitudCliente.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -55,7 +57,8 @@ namespace SolicitudCliente
             if (cmbParametro.SelectedIndex == 2)
             {
                 //Parametro precio
-                request.AddParameter("precio", consulta);
+                double.TryParse(consulta, out double num);
+                request.AddParameter("precio", num);
             }
             if (cmbParametro.SelectedIndex == 3)
             {
@@ -66,9 +69,37 @@ namespace SolicitudCliente
             if (cmbParametro.SelectedIndex == 4)
             {
                 //Parametro fechaVencimiento
-                
-                request.AddParameter("fechaVencimiento", consulta);
+                DateTime fecha = DateTime.Parse(consulta);
+                request.AddParameter("fechaVencimiento", fecha);
             }
+
+            var response = client.Get(request);
+
+            if (response.IsSuccessful)
+            {
+                // Deserializar el JSON a un objeto Perecedero
+                Perecedero perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
+
+                txtNombre.Text = perecedero.nombre;
+                txtCodigo.Text = perecedero.codigo.ToString();
+                txtPrecio.Text = perecedero.precio.ToString("F2");
+                txtCantidad.Text = perecedero.cantidad.ToString();
+                dateVencimiento.Value = perecedero.fechaVencimiento;
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                MessageBox.Show("Producto no encontrado.");
+            }
+            else
+            {
+                MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
+            }
+
+
         }
     }
 }

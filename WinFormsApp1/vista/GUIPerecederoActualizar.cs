@@ -66,5 +66,10 @@ namespace SolicitudCliente
                 return;
             }
         }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
