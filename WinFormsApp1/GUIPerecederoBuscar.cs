@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,6 +72,9 @@ namespace SolicitudCliente
                 return;
             }
 
+            var options = new RestClientOptions("http://localhost:8080");
+            var client = new RestClient(options);
+            var request = new RestRequest("/perecederos/find");
 
         }
     }
