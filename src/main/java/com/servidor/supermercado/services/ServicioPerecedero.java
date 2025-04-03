@@ -2,6 +2,7 @@ package com.servidor.supermercado.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servidor.supermercado.model.Perecedero;
 import lombok.Getter;
 
@@ -14,6 +15,8 @@ public class ServicioPerecedero {
     private ArrayList<Perecedero> perecederos = new ArrayList<>();
     private ObjectMapper objectMapper = new ObjectMapper();
     private Perecedero resultado;
+
+
 
     public Perecedero buscarPerecedero(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento){
 
@@ -110,10 +113,11 @@ public class ServicioPerecedero {
 
         try {
             // Convertir la lista a un JsonNode
+            objectMapper.registerModule(new JavaTimeModule());
             return objectMapper.valueToTree(perecederos);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return objectMapper.nullNode();
         }
 
     }

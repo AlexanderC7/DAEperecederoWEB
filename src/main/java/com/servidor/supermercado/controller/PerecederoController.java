@@ -1,6 +1,8 @@
 package com.servidor.supermercado.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
 import org.springframework.http.ResponseEntity;
@@ -109,7 +111,7 @@ public class PerecederoController {
 
         return ResponseEntity.ok(jsonPerecederos);
 
-
     }
 }
+
 
