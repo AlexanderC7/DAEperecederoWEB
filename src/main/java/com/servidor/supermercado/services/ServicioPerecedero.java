@@ -85,6 +85,15 @@ public class ServicioPerecedero {
         return null;
     }
 
+    public boolean eliminarPerecedero(Integer codigo) {
+        if (codigo == null) {
+            return false;
+        }
+
+        Perecedero perecedero = buscarPerecederoPorCodigo(codigo);
+        return perecedero != null && perecederos.remove(perecedero);
+    }
+
     public JsonNode listarPerecederos(){
 
         try {
