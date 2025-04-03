@@ -62,6 +62,7 @@
             btnActualizar.TabIndex = 32;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // lblEstadoConsulta
             // 

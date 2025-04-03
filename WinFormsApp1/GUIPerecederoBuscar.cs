@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,47 +36,39 @@ namespace SolicitudCliente
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            // Validación de nombre (No vacío)
-            string nombre = txtNombre.Text.Trim();
-            if (string.IsNullOrEmpty(nombre))
-            {
-                MessageBox.Show("El nombre no puede estar vacío.");
-                return;
-            }
-
-            // Validación de código (Debe ser un número entero)
-            if (!int.TryParse(txtCodigo.Text, out int codigo))
-            {
-                MessageBox.Show("Ingrese un código válido (número entero).");
-                return;
-            }
-
-            // Validación de precio (Debe ser un número decimal/double)
-            if (!double.TryParse(txtPrecio.Text, out double precio))
-            {
-                MessageBox.Show("Ingrese un precio válido (número decimal).");
-                return;
-            }
-
-            // Validación de cantidad (Debe ser un número entero)
-            if (!int.TryParse(txtCantidad.Text, out int cantidad))
-            {
-                MessageBox.Show("Ingrese una cantidad válida (número entero).");
-                return;
-            }
-
-            // Validación de fecha (Por ejemplo, que no sea una fecha pasada)
-            DateTime fechaVencimiento = dateVencimiento.Value;
-            if (fechaVencimiento < DateTime.Today)
-            {
-                MessageBox.Show("La fecha de vencimiento no puede ser pasada.");
-                return;
-            }
+            string consulta = txtValor.Text.Trim();
 
             var options = new RestClientOptions("http://localhost:8080");
             var client = new RestClient(options);
             var request = new RestRequest("/perecederos/find");
-
+            
+            if (cmbParametro.SelectedIndex == 0){
+                //Parametro Nombre
+                request.AddParameter("nombre", consulta);
+            } 
+            if (cmbParametro.SelectedIndex == 1)
+            {
+                //Parametro Codigo
+                int.TryParse(txtValor.Text, out int numero);
+                request.AddParameter("codigo", numero);
+            }
+            if (cmbParametro.SelectedIndex == 2)
+            {
+                //Parametro precio
+                request.AddParameter("precio", consulta);
+            }
+            if (cmbParametro.SelectedIndex == 3)
+            {
+                //Parametro cantidad
+                int.TryParse(txtValor.Text, out int numero);
+                request.AddParameter("cantidad", numero);
+            }
+            if (cmbParametro.SelectedIndex == 4)
+            {
+                //Parametro fechaVencimiento
+                
+                request.AddParameter("fechaVencimiento", consulta);
+            }
         }
     }
 }
