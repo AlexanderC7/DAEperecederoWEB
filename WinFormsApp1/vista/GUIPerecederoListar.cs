@@ -14,6 +14,7 @@ namespace SolicitudCliente
 {
     public partial class GUIPerecederoListar : Form
     {
+        Perecedero perecedero = new Perecedero();
         public GUIPerecederoListar()
         {
             InitializeComponent();
@@ -47,7 +48,6 @@ namespace SolicitudCliente
         private void GUIPerecederoListar_Load(object sender, EventArgs e)
         {
             CargarDatos(); // Cargar datos al abrir la ventana
-            Perecedero perecedero = new Perecedero();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -72,6 +72,7 @@
             btnConsultar.TabIndex = 19;
             btnConsultar.Text = "Consultar";
             btnConsultar.UseVisualStyleBackColor = false;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // lblValor
             // 
@@ -262,6 +263,7 @@
             btnEliminar.TabIndex = 22;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // GUIPerecederoEliminar
             // 
