@@ -14,9 +14,10 @@ import java.util.ArrayList;
 public class ServicioPerecedero {
 
     private ArrayList<Perecedero> perecederos = new ArrayList<>();
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private Perecedero resultado;
 
     public Perecedero buscarPerecedero(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento){
-        Perecedero resultado;
 
         if (nombre != null){
             resultado = buscarPerecederoPorNombre(nombre);
@@ -94,14 +95,25 @@ public class ServicioPerecedero {
         return perecedero != null && perecederos.remove(perecedero);
     }
 
+    public boolean actualizarPerecedero(Perecedero perecedero){
+        for (Perecedero perecederoLocal : perecederos){
+            if (resultado.equals(perecederoLocal)) {
+                perecederoLocal.setNombre(perecedero.getNombre());
+                perecederoLocal.setCodigo(perecedero.getCodigo());
+                perecederoLocal.setPrecio(perecedero.getPrecio());
+                perecederoLocal.setCantidad(perecedero.getCantidad());
+                perecederoLocal.setFechaVencimiento(perecedero.getFechaVencimiento());
+                return true;
+            }
+        }
+        return false;
+    }
+
     public JsonNode listarPerecederos(){
 
         try {
             // Convertir la lista a un JsonNode
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.valueToTree(listarPerecederos());
-            System.out.println("JSON generado: " + jsonNode.toPrettyString());
-            return jsonNode;
+            return objectMapper.valueToTree(perecederos);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -63,15 +60,29 @@ public class PerecederoController {
         }
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<String> actualizarPerecedero(@RequestBody Perecedero perecedero){
+        if (perecedero == null) {
+            return ResponseEntity.badRequest().body("No es el objeto esperado");
+        }
+
+        boolean actualizado = servicioPerecedero.actualizarPerecedero(perecedero);
+        if (actualizado) {
+            return ResponseEntity.ok("Actualizado");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/list")
     public ResponseEntity<JsonNode> listarPerecederos() {
-        JsonNode listaPerecederos = servicioPerecedero.listarPerecederos();
+        JsonNode jsonPerecederos = servicioPerecedero.listarPerecederos();
 
-        if (listaPerecederos.isEmpty()) {
+        if (jsonPerecederos.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.ok(listaPerecederos);
+        return ResponseEntity.ok(jsonPerecederos);
     }
 }
 
