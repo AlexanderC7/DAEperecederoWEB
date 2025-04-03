@@ -94,5 +94,18 @@ public class PerecederoController {
 
         return ResponseEntity.ok(jsonPerecederos);
     }
+
+    @GetMapping("/listfilter")
+    public ResponseEntity<JsonNode> listarPerecederosPorFiltro(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
+        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        JsonNode jsonPerecederos = servicioPerecedero.listarPerecederosPorFiltro(nombre, codigo, precio, cantidad, fechaVencimiento);
+
+        return ResponseEntity.ok(null);
+
+
+    }
 }
 
