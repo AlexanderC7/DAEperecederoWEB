@@ -13,13 +13,6 @@ public class ServicioPerecedero {
 
     private ArrayList<Perecedero> perecederos = new ArrayList<>();
 
-    public void llenarListaPrueba(){
-        Perecedero pere1 = new Perecedero("Bocadillo", 123, 2000.0, 2, LocalDateTime.now());
-        perecederos.add(pere1);
-        Perecedero pere2 = new Perecedero("Leche", 124, 9200.0, 10, LocalDateTime.now());
-        perecederos.add(pere2);
-    }
-
     public Perecedero buscarPerecedero(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento){
         Perecedero resultado;
 
