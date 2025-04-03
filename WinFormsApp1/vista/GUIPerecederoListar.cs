@@ -20,19 +20,34 @@ namespace SolicitudCliente
             InitializeComponent();
         }
 
-        private async void CargarDatos()
+
+        private void GUIPerecederoListar_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Asegurar que no es el encabezado
+            {
+                string valorCelda = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                MessageBox.Show($"Has hecho clic en: {valorCelda}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnListar_Click(object sender, EventArgs e)
         {
             try
             {
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos/list", Method.Get);
+                var request = new RestRequest("/perecederos/list");
 
-                var response = await client.ExecuteAsync<List<Perecedero>>(request);
+                var response = client.Get(request);
 
-                if (response.IsSuccessful && response.Data != null)
+                if (response.IsSuccessful && response.Content != null)
                 {
-                    dataGridView1.DataSource = response.Data; // Llenar la tabla con los datos de la API
+                    dataGridView1.DataSource = response.Content;
                 }
                 else
                 {
@@ -42,20 +57,6 @@ namespace SolicitudCliente
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void GUIPerecederoListar_Load(object sender, EventArgs e)
-        {
-            CargarDatos(); // Cargar datos al abrir la ventana
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Asegurar que no es el encabezado
-            {
-                string valorCelda = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-                MessageBox.Show($"Has hecho clic en: {valorCelda}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

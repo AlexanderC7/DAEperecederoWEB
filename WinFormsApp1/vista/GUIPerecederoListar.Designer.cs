@@ -30,6 +30,7 @@
         {
             lblTitulo = new Label();
             dataGridView1 = new DataGridView();
+            btnListar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,15 +52,28 @@
             dataGridView1.Location = new Point(12, 64);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(858, 477);
+            dataGridView1.Size = new Size(858, 429);
             dataGridView1.TabIndex = 25;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // btnListar
+            // 
+            btnListar.BackColor = Color.LightSalmon;
+            btnListar.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnListar.Location = new Point(166, 499);
+            btnListar.Name = "btnListar";
+            btnListar.Size = new Size(537, 50);
+            btnListar.TabIndex = 26;
+            btnListar.Text = "Consultar";
+            btnListar.UseVisualStyleBackColor = false;
+            btnListar.Click += btnListar_Click;
             // 
             // GUIPerecederoListar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 553);
+            Controls.Add(btnListar);
             Controls.Add(dataGridView1);
             Controls.Add(lblTitulo);
             Name = "GUIPerecederoListar";
@@ -74,5 +88,6 @@
 
         private Label lblTitulo;
         private DataGridView dataGridView1;
+        private Button btnListar;
     }
 }

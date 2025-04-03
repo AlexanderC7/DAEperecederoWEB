@@ -11,11 +11,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp1;
 
 namespace SolicitudCliente
 {
     public partial class GUIPerecederoBuscar : Form
     {
+        private model.Perecedero perecedero = new model.Perecedero();
         public GUIPerecederoBuscar()
         {
             InitializeComponent();
@@ -78,7 +80,14 @@ namespace SolicitudCliente
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 // Deserializar el JSON a un objeto Perecedero
-                Perecedero perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
+                try
+                {
+                    perecedero = JsonSerializer.Deserialize<model.Perecedero>(response.Content);
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
 
                 txtNombre.Text = perecedero.nombre;
                 txtCodigo.Text = perecedero.codigo.ToString();
