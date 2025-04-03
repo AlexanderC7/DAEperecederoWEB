@@ -41,8 +41,11 @@ public class ServicioPerecedero {
     }
 
     private Perecedero buscarPerecederoPorNombre(String nombre){
-        //Aqui por nombre
-        return null;
+        for (int i = 0; i < perecederos.size(); i++) {
+            if (nombre.equals(perecederos.get(i).getNombre())) {
+                return perecederos.get(i);
+            }
+        }
     }
 
     private Perecedero buscarPerecederoPorCodigo(Integer codigo){
