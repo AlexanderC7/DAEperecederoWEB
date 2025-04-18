@@ -75,29 +75,26 @@ public class PerecederoController {
 
         boolean actualizado = servicioPerecedero.actualizarPerecedero(perecedero);
         if (actualizado) {
-            return ResponseEntity.ok("Actualizado");
+            return ResponseEntity.ok("Perecedero Actualizado correctamente");
         } else {
-            return ResponseEntity.notFound().header("Actualizado", "No").build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No encontrado");
         }
     }
 
     @GetMapping
-    public ResponseEntity<JsonNode> listarPerecederos() {
-        JsonNode jsonPerecederos = servicioPerecedero.listarPerecederos();
-
-        if (jsonPerecederos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(jsonPerecederos);
-    }
-
-    @GetMapping("/filter")
     public ResponseEntity<JsonNode> listarPerecederosPorFiltro(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
         if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
-            return ResponseEntity.badRequest().body(null);
+            //Listar todos los perecederos
+            JsonNode jsonPerecederos = servicioPerecedero.listarPerecederos();
+
+            if (jsonPerecederos.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+
+            return ResponseEntity.ok(jsonPerecederos);
         }
 
+        //Listar segun parametro filtro
         JsonNode jsonPerecederos = servicioPerecedero.listarPerecederosPorFiltro(nombre, codigo, precio, cantidad, fechaVencimiento);
 
         if (jsonPerecederos == null) {
