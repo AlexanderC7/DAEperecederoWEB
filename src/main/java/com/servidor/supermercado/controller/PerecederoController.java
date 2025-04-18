@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,8 +52,8 @@ public class PerecederoController {
         return ResponseEntity.ok(perecederoEncontrado);
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> eliminarPerecedero(@RequestParam Integer codigo) {
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<String> eliminarPerecedero(@PathVariable Integer codigo) {
         if (codigo == null) {
             return ResponseEntity.badRequest().body("El código del perecedero no puede ser nulo");
         }
@@ -62,7 +63,7 @@ public class PerecederoController {
         if (eliminado) {
             return ResponseEntity.ok("Perecedero eliminado correctamente");
         } else {
-            return ResponseEntity.notFound().header("Eliminado","No").build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No encontrado");
         }
     }
 
