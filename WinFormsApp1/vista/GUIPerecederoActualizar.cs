@@ -71,7 +71,7 @@ namespace SolicitudCliente
 
             var options = new RestClientOptions("http://localhost:8080");
             var client = new RestClient(options);
-            var request = new RestRequest("/perecederos/update");
+            var request = new RestRequest("/perecederos");
 
             request.RequestFormat = DataFormat.Json;
 
@@ -85,19 +85,22 @@ namespace SolicitudCliente
 
             });
 
-            var response = client.Post(request);
+            var response = client.Put(request);
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 // Mostrar mensaje de éxito
-                MessageBox.Show("Producto actualizado", "Estado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Producto actualizado con éxito", "Estado de actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiar los campos después de agregar el producto
                 txtNombre.Clear();
                 txtCodigo.Clear();
                 txtPrecio.Clear();
                 txtCantidad.Clear();
-                dateVencimiento.Value = DateTime.Now;
+                dateVencimiento.Value = DateTime.Today;
+
+                lblEstadoConsulta.Text = "Producto actualizado!";
+                lblEstadoConsulta.ForeColor = Color.Turquoise;
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
@@ -118,65 +121,99 @@ namespace SolicitudCliente
         {
             string consulta = txtValor.Text.Trim();
 
-            var options = new RestClientOptions("http://localhost:8080");
-            var client = new RestClient(options);
-            var request = new RestRequest("/perecederos/find");
+            txtNombre.Clear();
+            txtCodigo.Clear();
+            txtPrecio.Clear();
+            txtCantidad.Clear();
+            dateVencimiento.Value = DateTime.Today;
+            lblEstadoConsulta.Text = "Sin resultados";
+            lblEstadoConsulta.ForeColor = Color.DarkRed;
 
-            if (cmbParametro.SelectedIndex == 0)
+            try
             {
-                //Parametro Nombre
-                request.AddParameter("nombre", consulta);
-            }
-            if (cmbParametro.SelectedIndex == 1)
-            {
-                //Parametro Codigo
-                int.TryParse(txtValor.Text, out int numero);
-                request.AddParameter("codigo", numero);
-            }
-            if (cmbParametro.SelectedIndex == 2)
-            {
-                //Parametro precio
-                double.TryParse(consulta, out double num);
-                request.AddParameter("precio", num);
-            }
-            if (cmbParametro.SelectedIndex == 3)
-            {
-                //Parametro cantidad
-                int.TryParse(txtValor.Text, out int numero);
-                request.AddParameter("cantidad", numero);
-            }
-            if (cmbParametro.SelectedIndex == 4)
-            {
-                //Parametro fechaVencimiento
-                DateTime fecha = DateTime.Parse(consulta);
-                request.AddParameter("fechaVencimiento", fecha);
-            }
+                var options = new RestClientOptions("http://localhost:8080");
+                var client = new RestClient(options);
+                var request = new RestRequest("/perecederos/query");
 
-            var response = client.Get(request);
+                if (cmbParametro.SelectedIndex == 0)
+                {
+                    //Parametro Nombre
+                    request.AddParameter("nombre", consulta);
+                }
+                if (cmbParametro.SelectedIndex == 1)
+                {
+                    //Parametro Codigo
+                    int.TryParse(txtValor.Text, out int numero);
+                    request.AddParameter("codigo", numero);
+                }
+                if (cmbParametro.SelectedIndex == 2)
+                {
+                    //Parametro precio
+                    double.TryParse(consulta, out double num);
+                    request.AddParameter("precio", num);
+                }
+                if (cmbParametro.SelectedIndex == 3)
+                {
+                    //Parametro cantidad
+                    int.TryParse(txtValor.Text, out int numero);
+                    request.AddParameter("cantidad", numero);
+                }
+                if (cmbParametro.SelectedIndex == 4)
+                {
+                    //Parametro fechaVencimiento
+                    DateTime fecha = DateTime.Parse(consulta);
+                    request.AddParameter("fechaVencimiento", fecha);
+                }
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                // Deserializar el JSON a un objeto Perecedero
-                Perecedero perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
+                var response = client.Get(request);
 
-                txtNombre.Text = perecedero.nombre;
-                txtCodigo.Text = perecedero.codigo.ToString();
-                txtPrecio.Text = perecedero.precio.ToString("F2");
-                txtCantidad.Text = perecedero.cantidad.ToString();
-                dateVencimiento.Value = perecedero.fechaVencimiento;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    // Deserializar el JSON a un objeto Perecedero
+                    try
+                    {
+                        var perecedero = JsonSerializer.Deserialize<model.Perecedero>(response.Content);
+                        if (perecedero != null)
+                        {
+                            txtNombre.Text = perecedero.nombre;
+                            txtCodigo.Text = perecedero.codigo.ToString();
+                            txtPrecio.Text = perecedero.precio.ToString("F2");
+                            txtCantidad.Text = perecedero.cantidad.ToString();
+                            dateVencimiento.Value = perecedero.fechaVencimiento;
+
+                            lblEstadoConsulta.Text = "Producto encontrado!";
+                            lblEstadoConsulta.ForeColor = Color.Aquamarine;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Procesamiento de respuesta incompleta", "Fallo de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("Solicitud incorrecta: faltan parámetros.", "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    MessageBox.Show("Producto no encontrado.", "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                }
+                else
+                {
+                    MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
+                }
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            catch (Exception ex)
             {
-                MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+                MessageBox.Show("Fallo al realizar la consulta", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                MessageBox.Show("Producto no encontrado.");
-            }
-            else
-            {
-                MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
-            }
+        }
+
+        private void GUIPerecederoActualizar_Load(object sender, EventArgs e)
+        {
+            dateVencimiento.Value = DateTime.Today;
         }
     }
 }

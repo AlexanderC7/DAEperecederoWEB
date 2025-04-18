@@ -53,7 +53,7 @@ namespace SolicitudCliente
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo obtener la lista de perecederos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se pudo obtener la lista de perecederos", "Error del servidor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lblStatus.Text = "Error en el servidor";
                 }
             }

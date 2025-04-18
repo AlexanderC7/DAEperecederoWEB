@@ -280,6 +280,7 @@
             Name = "GUIPerecederoActualizar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GUIPerecederoActualizar";
+            Load += GUIPerecederoActualizar_Load;
             panelResultados.ResumeLayout(false);
             panelResultados.PerformLayout();
             ResumeLayout(false);

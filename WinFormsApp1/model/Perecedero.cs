@@ -22,7 +22,7 @@ namespace SolicitudCliente.model
         public int cantidad { get; set; }
 
         [JsonPropertyName("fechaVencimiento")]
-        [JsonConverter(typeof(DateTimeArrayConverter))]
+        [JsonConverter(typeof(FlexibleDateTimeConverter))]
         public DateTime fechaVencimiento { get; set; }
     }
 }

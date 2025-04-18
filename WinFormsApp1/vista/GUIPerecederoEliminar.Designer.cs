@@ -61,6 +61,7 @@
             btnCerrar.TabIndex = 20;
             btnCerrar.Text = "Volver";
             btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // btnConsultar
             // 
@@ -283,6 +284,7 @@
             Name = "GUIPerecederoEliminar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GUIPerecederoEliminar";
+            Load += GUIPerecederoEliminar_Load;
             panelResultados.ResumeLayout(false);
             panelResultados.PerformLayout();
             ResumeLayout(false);

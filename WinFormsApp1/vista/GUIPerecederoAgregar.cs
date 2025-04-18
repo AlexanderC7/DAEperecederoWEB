@@ -22,7 +22,7 @@ namespace SolicitudCliente
 
         private void PerecederoAgregar_Load(object sender, EventArgs e)
         {
-
+            dateVencimiento.Value = DateTime.Today;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -96,7 +96,7 @@ namespace SolicitudCliente
                     txtCodigo.Clear();
                     txtPrecio.Clear();
                     txtCantidad.Clear();
-                    dateVencimiento.Value = DateTime.Now;
+                    dateVencimiento.Value = DateTime.Today;
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
