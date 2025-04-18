@@ -22,14 +22,7 @@ namespace SolicitudCliente
             InitializeComponent();
         }
 
-
-        private void GUIPerecederoListar_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void btnListar_Click(object sender, EventArgs e)
+        private void listarPerecederos()
         {
             try
             {
@@ -63,6 +56,17 @@ namespace SolicitudCliente
             }
         }
 
+        private void GUIPerecederoListar_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            listarPerecederos();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -71,6 +75,11 @@ namespace SolicitudCliente
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void GUIPerecederoListar_Load_1(object sender, EventArgs e)
+        {
+            listarPerecederos();
         }
     }
 

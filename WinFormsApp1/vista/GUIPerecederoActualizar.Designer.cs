@@ -155,6 +155,7 @@
             txtCodigo.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCodigo.Location = new Point(32, 153);
             txtCodigo.Name = "txtCodigo";
+            txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(240, 31);
             txtCodigo.TabIndex = 8;
             // 

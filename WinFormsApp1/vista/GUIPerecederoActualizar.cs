@@ -15,6 +15,8 @@ namespace SolicitudCliente
 {
     public partial class GUIPerecederoActualizar : Form
     {
+        private model.Perecedero perecedero = new model.Perecedero();
+
         public GUIPerecederoActualizar()
         {
             InitializeComponent();
@@ -172,7 +174,7 @@ namespace SolicitudCliente
                     // Deserializar el JSON a un objeto Perecedero
                     try
                     {
-                        var perecedero = JsonSerializer.Deserialize<model.Perecedero>(response.Content);
+                        perecedero = JsonSerializer.Deserialize<model.Perecedero>(response.Content);
                         if (perecedero != null)
                         {
                             txtNombre.Text = perecedero.nombre;

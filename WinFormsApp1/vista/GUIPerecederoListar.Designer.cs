@@ -56,7 +56,7 @@
             btnListar.Name = "btnListar";
             btnListar.Size = new Size(537, 50);
             btnListar.TabIndex = 26;
-            btnListar.Text = "Consultar";
+            btnListar.Text = "Listar";
             btnListar.UseVisualStyleBackColor = false;
             btnListar.Click += btnListar_Click;
             // 
@@ -82,7 +82,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblStatus.ForeColor = Color.ForestGreen;
-            lblStatus.Location = new Point(419, 409);
+            lblStatus.Location = new Point(402, 407);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(28, 28);
             lblStatus.TabIndex = 28;
@@ -114,6 +114,7 @@
             Name = "GUIPerecederoListar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GUIPerecederoListar";
+            Load += GUIPerecederoListar_Load_1;
             ((System.ComponentModel.ISupportInitialize)table).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -1,5 +1,6 @@
 using RestSharp;
 using SolicitudCliente;
+using SolicitudCliente.vista;
 
 namespace WinFormsApp1
 {
@@ -103,7 +104,8 @@ namespace WinFormsApp1
 
         private void menuItemListarFiltro_Click(object sender, EventArgs e)
         {
-            //Agregar GUI Listar por filtro
+            GUIPerecederoListarFiltro gUIPerecederoListarFiltro = new GUIPerecederoListarFiltro();
+            gUIPerecederoListarFiltro.Show();
         }
     }
 }

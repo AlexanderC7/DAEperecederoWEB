@@ -82,7 +82,7 @@ namespace SolicitudCliente
                     // Deserializar el JSON a un objeto Perecedero
                     try
                     {
-                        var perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
+                        perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
 
                         if (perecedero != null)
                         {
@@ -98,7 +98,7 @@ namespace SolicitudCliente
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al consultar información", "Error del servidor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No se puede consultar la información", "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
 
@@ -128,8 +128,7 @@ namespace SolicitudCliente
             {
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos");
-                request.AddParameter("codigo", perecedero.codigo);
+                var request = new RestRequest($"/perecederos/{perecedero.codigo}");
 
                 var response = client.Delete(request);
 
