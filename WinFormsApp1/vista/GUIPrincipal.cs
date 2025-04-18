@@ -55,7 +55,7 @@ namespace WinFormsApp1
 
         private void menuItemAcercade_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Equipo de trabajo:\n->Jhon Cartagena\n->Leandro Vergara\n->Alejandro Vargas\n->Juan Florez\n Versión: 1.0.0", "Acerca de...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Equipo de trabajo:\n->Jhon Cartagena\n->Leandro Vergara\n->Alejandro Vargas\n->Juan Florez\n Versión: 2.0.0", "Acerca de...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuAyuda_Click(object sender, EventArgs e)
@@ -93,6 +93,17 @@ namespace WinFormsApp1
         {
             GUIPerecederoListar gUIPerecederoListar = new GUIPerecederoListar();
             gUIPerecederoListar.Show();
+        }
+
+        private void menuItemActualizar_Click(object sender, EventArgs e)
+        {
+            GUIPerecederoActualizar gUIPerecederoActualizar = new GUIPerecederoActualizar();
+            gUIPerecederoActualizar.Show();
+        }
+
+        private void menuItemListarFiltro_Click(object sender, EventArgs e)
+        {
+            //Agregar GUI Listar por filtro
         }
     }
 }

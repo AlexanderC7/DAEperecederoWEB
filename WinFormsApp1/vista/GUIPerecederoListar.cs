@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RestSharp;
@@ -23,41 +25,52 @@ namespace SolicitudCliente
 
         private void GUIPerecederoListar_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Asegurar que no es el encabezado
-            {
-                string valorCelda = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-                MessageBox.Show($"Has hecho clic en: {valorCelda}", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
 
         private void btnListar_Click(object sender, EventArgs e)
         {
             try
             {
+                lblStatus.Text = "";
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos/list");
+                var request = new RestRequest("/perecederos");
 
                 var response = client.Get(request);
 
                 if (response.IsSuccessful && response.Content != null)
                 {
-                    dataGridView1.DataSource = response.Content;
+                    // Deserializar el JSON a una lista de objetos Perecedero
+                    var perecederos = JsonSerializer.Deserialize<List<Perecedero>>(response.Content);
+
+                    // Asignar la lista como fuente de datos del DataGridView
+                    table.DataSource = perecederos;
+                    table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    lblStatus.Text = "Listado Actualizado!";
+
                 }
                 else
                 {
                     MessageBox.Show("No se pudo obtener la lista de perecederos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblStatus.Text = "Error en el servidor";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}", "Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 

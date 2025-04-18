@@ -70,7 +70,7 @@ namespace SolicitudCliente
 
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos/add");
+                var request = new RestRequest("/perecederos");
 
                 request.RequestFormat = DataFormat.Json;
 
@@ -89,7 +89,7 @@ namespace SolicitudCliente
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     // Mostrar mensaje de éxito
-                    MessageBox.Show("Producto Creado", "Estado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Producto Creado con éxito", "Estado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Limpiar los campos después de agregar el producto
                     txtNombre.Clear();
@@ -100,11 +100,11 @@ namespace SolicitudCliente
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+                    MessageBox.Show("Solicitud incorrecta: faltan parámetros.", "Fallo al crear", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    MessageBox.Show("Producto no encontrado.");
+                    MessageBox.Show("Producto no encontrado");
                 }
                 else
                 {

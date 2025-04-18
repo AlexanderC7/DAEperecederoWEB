@@ -111,6 +111,7 @@
             menuItemActualizar.Name = "menuItemActualizar";
             menuItemActualizar.Size = new Size(278, 32);
             menuItemActualizar.Text = "Actualizar";
+            menuItemActualizar.Click += menuItemActualizar_Click;
             // 
             // menuItemListar
             // 
@@ -126,6 +127,7 @@
             menuItemListarFiltro.Name = "menuItemListarFiltro";
             menuItemListarFiltro.Size = new Size(278, 32);
             menuItemListarFiltro.Text = "Listar según filtro";
+            menuItemListarFiltro.Click += menuItemListarFiltro_Click;
             // 
             // menuAyuda
             // 
