@@ -17,18 +17,12 @@ public class PerecederoController {
 
     private ServicioPerecedero servicioPerecedero = new ServicioPerecedero();
 
-    @GetMapping("/")
-    public ResponseEntity<String> devolverPrincipal(){
-
-        return ResponseEntity.ok("Perecederos añadidos correctamente");
-    }
-
     @GetMapping("/healthStatus")
     public ResponseEntity<String> devolverEstado(){
         return ResponseEntity.ok("OK");
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<String> agregarPerecedero(@RequestBody Perecedero perecedero){
         if (perecedero == null) {
             ResponseEntity.badRequest().body("No es el objeto esperado");
@@ -43,7 +37,7 @@ public class PerecederoController {
         }
     }
 
-    @GetMapping("/find")
+    @GetMapping("/query")
     public ResponseEntity<Perecedero> buscarPerecedero(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
         if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
             return ResponseEntity.badRequest().body(null);
@@ -57,7 +51,7 @@ public class PerecederoController {
         return ResponseEntity.ok(perecederoEncontrado);
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping
     public ResponseEntity<String> eliminarPerecedero(@RequestParam Integer codigo) {
         if (codigo == null) {
             return ResponseEntity.badRequest().body("El código del perecedero no puede ser nulo");
@@ -68,11 +62,11 @@ public class PerecederoController {
         if (eliminado) {
             return ResponseEntity.ok("Perecedero eliminado correctamente");
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().header("Eliminado","No").build();
         }
     }
 
-    @PostMapping("/update")
+    @PutMapping
     public ResponseEntity<String> actualizarPerecedero(@RequestBody Perecedero perecedero){
         if (perecedero == null) {
             return ResponseEntity.badRequest().body("No es el objeto esperado");
@@ -82,11 +76,11 @@ public class PerecederoController {
         if (actualizado) {
             return ResponseEntity.ok("Actualizado");
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().header("Actualizado", "No").build();
         }
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public ResponseEntity<JsonNode> listarPerecederos() {
         JsonNode jsonPerecederos = servicioPerecedero.listarPerecederos();
 
@@ -97,7 +91,7 @@ public class PerecederoController {
         return ResponseEntity.ok(jsonPerecederos);
     }
 
-    @GetMapping("/listfilter")
+    @GetMapping("/filter")
     public ResponseEntity<JsonNode> listarPerecederosPorFiltro(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
         if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
             return ResponseEntity.badRequest().body(null);
