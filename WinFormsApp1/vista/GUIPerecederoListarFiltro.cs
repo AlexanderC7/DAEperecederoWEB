@@ -70,6 +70,7 @@ namespace SolicitudCliente.vista
                         var perecederos = JsonSerializer.Deserialize<List<Perecedero>>(response.Content);
 
                         // Asignar la lista como fuente de datos del DataGridView
+                        table.ClearSelection();
                         table.DataSource = perecederos;
                         table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         lblStatus.Text = "Listado Actualizado!";
@@ -89,9 +90,16 @@ namespace SolicitudCliente.vista
                 {
                     MessageBox.Show("Producto no encontrado.", "Error de consulta", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    table.ClearSelection();
+                    table.DataSource = null;
+                    lblStatus.Text = "Sin resultados";
+                    MessageBox.Show("No hay coincidencia de productos para el filtro aplicado", "Estado de consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
                 {
-                    MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
+                    MessageBox.Show($"Error en la solicitud código procesado: {response.StatusCode}", "Error de solicitud", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
