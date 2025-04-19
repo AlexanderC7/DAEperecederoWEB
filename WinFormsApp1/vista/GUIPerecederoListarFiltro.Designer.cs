@@ -36,6 +36,7 @@
             btnCerrar = new Button();
             table = new DataGridView();
             btnFiltrar = new Button();
+            lblStatus = new Label();
             ((System.ComponentModel.ISupportInitialize)table).BeginInit();
             SuspendLayout();
             // 
@@ -65,14 +66,16 @@
             // 
             // cmbParametro
             // 
+            cmbParametro.Cursor = Cursors.IBeam;
             cmbParametro.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbParametro.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbParametro.FormattingEnabled = true;
-            cmbParametro.Items.AddRange(new object[] { "Nombre", "Código", "Precio", "Cantidad", "Fecha vencimiento" });
+            cmbParametro.Items.AddRange(new object[] { "[Ninguno]", "Nombre", "Código", "Precio", "Cantidad", "Fecha vencimiento" });
             cmbParametro.Location = new Point(28, 96);
             cmbParametro.Name = "cmbParametro";
             cmbParametro.Size = new Size(190, 36);
             cmbParametro.TabIndex = 27;
+            cmbParametro.SelectedIndexChanged += cmbParametro_SelectedIndexChanged;
             // 
             // lblValor
             // 
@@ -103,6 +106,7 @@
             btnCerrar.TabIndex = 30;
             btnCerrar.Text = "Volver";
             btnCerrar.UseVisualStyleBackColor = false;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // table
             // 
@@ -131,12 +135,25 @@
             btnFiltrar.TabIndex = 32;
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.UseVisualStyleBackColor = false;
+            btnFiltrar.Click += btnFiltrar_Click;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblStatus.ForeColor = Color.ForestGreen;
+            lblStatus.Location = new Point(696, 57);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(26, 25);
+            lblStatus.TabIndex = 33;
+            lblStatus.Text = "--";
             // 
             // GUIPerecederoListarFiltro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(882, 553);
+            Controls.Add(lblStatus);
             Controls.Add(btnFiltrar);
             Controls.Add(table);
             Controls.Add(btnCerrar);
@@ -164,5 +181,6 @@
         private Button btnCerrar;
         private DataGridView table;
         private Button btnFiltrar;
+        private Label lblStatus;
     }
 }

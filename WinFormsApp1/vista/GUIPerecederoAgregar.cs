@@ -37,6 +37,7 @@ namespace SolicitudCliente
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            try
             {
                 // Validar que los campos no estén vacíos
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
@@ -110,8 +111,10 @@ namespace SolicitudCliente
                 {
                     MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
                 }
-
-                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo crear el producto", "Error con el servidor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
