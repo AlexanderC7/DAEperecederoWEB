@@ -1,36 +1,39 @@
 package com.servidor.supermercado.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/perecederos")
+@RequestMapping("/perecederos")
 public class PerecederoController {
 
-    private ServicioPerecedero servicioPerecedero = new ServicioPerecedero();
+    private final ServicioPerecedero servicioPerecedero = new ServicioPerecedero();
 
     @GetMapping("/healthStatus")
-    public ResponseEntity<String> devolverEstado(){
+    public ResponseEntity<String> devolverEstado() {
         return ResponseEntity.ok("OK");
     }
 
     @PostMapping
-    public ResponseEntity<String> agregarPerecedero(@RequestBody Perecedero perecedero){
-        if (perecedero == null) {
-            ResponseEntity.badRequest().body("No es el objeto esperado");
+    public ResponseEntity<?> agregarPerecedero(@Valid @RequestBody Perecedero perecedero, BindingResult result) {
+        if (result.hasErrors()) {
+            List<String> errores = result.getFieldErrors().stream()
+                    .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.badRequest().body(errores);
         }
 
         boolean agregado = servicioPerecedero.agregarPerecedero(perecedero);
-
         if (agregado) {
             return ResponseEntity.ok("Agregado correctamente");
         } else {
@@ -38,28 +41,48 @@ public class PerecederoController {
         }
     }
 
+    @PutMapping
+    public ResponseEntity<?> actualizarPerecedero(@Valid @RequestBody Perecedero perecedero, BindingResult result) {
+        if (result.hasErrors()) {
+            List<String> errores = result.getFieldErrors().stream()
+                    .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.badRequest().body(errores);
+        }
+
+        boolean actualizado = servicioPerecedero.actualizarPerecedero(perecedero);
+        if (actualizado) {
+            return ResponseEntity.ok("Perecedero actualizado correctamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No encontrado");
+        }
+    }
+
     @GetMapping("/query")
-    public ResponseEntity<Perecedero> buscarPerecedero(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
-        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
-            return ResponseEntity.badRequest().body(null);
+    public ResponseEntity<?> buscarPerecedero(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) Integer codigo,
+            @RequestParam(required = false) Double precio,
+            @RequestParam(required = false) Integer cantidad,
+            @RequestParam(required = false) LocalDateTime fechaVencimiento) {
+
+        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null) {
+            return ResponseEntity.badRequest().body("Debe proporcionar al menos un criterio de búsqueda");
         }
 
-        Perecedero perecederoEncontrado = servicioPerecedero.buscarPerecedero(nombre,codigo,precio,cantidad,fechaVencimiento);
+        Perecedero encontrado = servicioPerecedero.buscarPerecedero(nombre, codigo, precio, cantidad, fechaVencimiento);
+        if (encontrado == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
-        if (perecederoEncontrado == null){
-            ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(perecederoEncontrado);
+        return ResponseEntity.ok(encontrado);
     }
 
     @DeleteMapping("/{codigo}")
     public ResponseEntity<String> eliminarPerecedero(@PathVariable Integer codigo) {
-        if (codigo == null) {
-            return ResponseEntity.badRequest().body("El código del perecedero no puede ser nulo");
+        if (codigo == null || codigo <= 0) {
+            return ResponseEntity.badRequest().body("El código del perecedero debe ser un número positivo");
         }
-    
+
         boolean eliminado = servicioPerecedero.eliminarPerecedero(codigo);
-    
         if (eliminado) {
             return ResponseEntity.ok("Perecedero eliminado correctamente");
         } else {
@@ -67,43 +90,25 @@ public class PerecederoController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<String> actualizarPerecedero(@RequestBody Perecedero perecedero){
-        if (perecedero == null) {
-            return ResponseEntity.badRequest().body("No es el objeto esperado");
-        }
-
-        boolean actualizado = servicioPerecedero.actualizarPerecedero(perecedero);
-        if (actualizado) {
-            return ResponseEntity.ok("Perecedero Actualizado correctamente");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No encontrado");
-        }
-    }
-
     @GetMapping
-    public ResponseEntity<JsonNode> listarPerecederosPorFiltro(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer codigo, @RequestParam(required = false) Double precio, @RequestParam(required = false) Integer cantidad, @RequestParam(required = false) LocalDateTime fechaVencimiento){
-        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null){
-            //Listar todos los perecederos
-            JsonNode jsonPerecederos = servicioPerecedero.listarPerecederos();
+    public ResponseEntity<?> listarPerecederosPorFiltro(
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) Integer codigo,
+            @RequestParam(required = false) Double precio,
+            @RequestParam(required = false) Integer cantidad,
+            @RequestParam(required = false) LocalDateTime fechaVencimiento) {
 
-            if (jsonPerecederos.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
-
-            return ResponseEntity.ok(jsonPerecederos);
+        JsonNode json;
+        if (nombre == null && codigo == null && precio == null && cantidad == null && fechaVencimiento == null) {
+            json = servicioPerecedero.listarPerecederos();
+        } else {
+            json = servicioPerecedero.listarPerecederosPorFiltro(nombre, codigo, precio, cantidad, fechaVencimiento);
         }
 
-        //Listar segun parametro filtro
-        JsonNode jsonPerecederos = servicioPerecedero.listarPerecederosPorFiltro(nombre, codigo, precio, cantidad, fechaVencimiento);
-
-        if (jsonPerecederos == null) {
-            return ResponseEntity.notFound().build();
+        if (json == null || json.isEmpty()) {
+            return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.ok(jsonPerecederos);
-
+        return ResponseEntity.ok(json);
     }
 }
-
-
