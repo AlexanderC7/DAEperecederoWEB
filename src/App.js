@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { MenuPrincipal } from "./components/MenuPrincipal";
+import { AgregarPerecedero } from "./components/AgregarPerecedero";
+import { BuscarPerecedero } from "./components/BuscarPerecedero";
+import { ActualizarPerecedero } from "./components/ActualizarPerecedero";
+import { EliminarPerecedero } from "./components/EliminarPerecedero";
+import { ListarTodos } from "./components/ListarTodos";
+import { ListarPorFiltro } from "./components/ListarPorFiltro";
+import { AcercaDe } from "./components/AcercaDe";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MenuPrincipal />} />
+        <Route path="/agregar" element={<AgregarPerecedero />} />
+        <Route path="/buscar" element={<BuscarPerecedero />} />
+        <Route path="/actualizar" element={<ActualizarPerecedero />} />
+        <Route path="/eliminar" element={<EliminarPerecedero />} />
+        <Route path="/listar" element={<ListarTodos />} />
+        <Route path="/filtrar" element={<ListarPorFiltro />} />
+        <Route path="/acerca" element={<AcercaDe />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
