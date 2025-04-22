@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { AgregarPerecedero } from "../views/AgregarPerecedero";
+import { AgregarPerecedero } from "./views/AgregarPerecedero";
 import { BuscarPerecedero } from "./BuscarPerecedero";
 import { ActualizarPerecedero } from "./ActualizarPerecedero";
 import { EliminarPerecedero } from "./EliminarPerecedero";

@@ -4,8 +4,8 @@ import BuscarPerecedero from './views/BuscarPerecedero';
 import AgregarPerecedero from './views/AgregarPerecedero';
 import ActualizarPerecedero from './views/ActualizarPerecedero';
 import EliminarPerecedero from './views/EliminarPerecedero';
-import ListarTodos from './views/ListarTodos';
-import ListarConFiltro from './views/ListarConFiltro';
+import ListarPerecederos from './views/ListarPerecedero';
+import ListarConFiltro from './views/ListarConFiltroPerecedero';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path='/agregar' element={<AgregarPerecedero />} />
         <Route path='/actualizar' element={<ActualizarPerecedero />} />
         <Route path='/eliminar' element={<EliminarPerecedero />} />
-        <Route path='/listar' element={<ListarTodos />} />
+        <Route path='/listar' element={<ListarPerecederos />} />
         <Route path='/listar-filtro' element={<ListarConFiltro />} />
       </Routes>
     </Router>

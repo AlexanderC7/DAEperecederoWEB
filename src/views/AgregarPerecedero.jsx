@@ -66,3 +66,5 @@ export function AgregarPerecedero() {
     </div>
   );
 }
+
+export default AgregarPerecedero;
