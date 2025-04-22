@@ -50,7 +50,7 @@ export default function PaginaPrincipal() {
         <button
           className="text-sm text-green-800 hover:underline flex items-center justify-center gap-2"
           onClick={() => {
-            alert('Aplicación v1.0\nEquipo: Alejandro, Leandro, Jhon, Juan');
+            alert('ACERCA DE \nAplicación v2.0\nEquipo: \n> Alejandro Vargas\n> Leandro Vergara\n> Jhon Cartagena\n> Juan FLorez');
           }}
         >
           <HelpCircle className="w-4 h-4" /> Ayuda
