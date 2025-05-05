@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/perecederos")
 public class PerecederoController {
@@ -24,7 +25,7 @@ public class PerecederoController {
         return ResponseEntity.ok("OK");
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> agregarPerecedero(@Valid @RequestBody Perecedero perecedero, BindingResult result) {
         if (result.hasErrors()) {
             List<String> errores = result.getFieldErrors().stream()
@@ -41,7 +42,7 @@ public class PerecederoController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/")
     public ResponseEntity<?> actualizarPerecedero(@Valid @RequestBody Perecedero perecedero, BindingResult result) {
         if (result.hasErrors()) {
             List<String> errores = result.getFieldErrors().stream()
@@ -90,7 +91,7 @@ public class PerecederoController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<?> listarPerecederosPorFiltro(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) Integer codigo,
