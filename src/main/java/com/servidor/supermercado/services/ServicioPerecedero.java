@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Service
@@ -44,48 +46,28 @@ public class ServicioPerecedero {
     }
 
     private Perecedero buscarPerecederoPorNombre(String nombre){
-        for (Perecedero perecedero : perecederos) {
-            if (nombre.equals(perecedero.getNombre())) {
-                return perecedero;
-            }
-        }
-        return null;
+        Optional<Perecedero> busqueda = perecederosRespository.findFirstByNombre(nombre);
+        return busqueda.orElse(null);
     }
 
     private Perecedero buscarPerecederoPorCodigo(Integer codigo){
-        for (Perecedero perecedero : perecederos) {
-            if (codigo.equals(perecedero.getCodigo())) {
-                return perecedero;
-            }
-        }
-        return null;
+        Optional<Perecedero> busqueda = perecederosRespository.findFirstByCodigo(codigo);
+        return busqueda.orElse(null);
     }
 
     private Perecedero buscarPerecederoPorPrecio(Double precio){
-        for (Perecedero perecedero : perecederos) {
-            if (precio.equals(perecedero.getPrecio())) {
-                return perecedero;
-            }
-        }
-        return null;
+        Optional<Perecedero> busqueda = perecederosRespository.findFirstByPrecio(precio);
+        return busqueda.orElse(null);
     }
 
     private Perecedero buscarPerecederoPorCantidad(Integer cantidad){
-        for (Perecedero perecedero : perecederos) {
-            if (cantidad.equals(perecedero.getCantidad())) {
-                return perecedero;
-            }
-        }
-        return null;
+        Optional<Perecedero> busqueda = perecederosRespository.findFirstByCantidad(cantidad);
+        return busqueda.orElse(null);
     }
 
     private Perecedero buscarPerecederoPorVencimiento(LocalDateTime fechaVencimiento){
-        for (Perecedero perecedero : perecederos) {
-            if (fechaVencimiento.equals(perecedero.getFechaVencimiento())) {
-                return perecedero;
-            }
-        }
-        return null;
+        Optional<Perecedero> busqueda = perecederosRespository.findFirstByFechaVencimiento(fechaVencimiento);
+        return busqueda.orElse(null);
     }
 
     public Perecedero agregarPerecedero(Perecedero perecedero){
@@ -93,23 +75,20 @@ public class ServicioPerecedero {
     }
 
     public boolean eliminarPerecedero(Integer codigo) {
-        if (codigo == null) {
-            return false;
-        }
+        if (codigo == null) {return false;}
 
         Perecedero perecedero = buscarPerecederoPorCodigo(codigo);
-        return perecedero != null && perecederos.remove(perecedero);
+        if (perecedero == null) {return false;}
+
+        perecederosRespository.delete(perecedero);
+        return true;
     }
 
     public boolean actualizarPerecedero(Perecedero perecedero){
-        perecederosRespository
-        /*
-        perecederoLocal.setNombre(perecedero.getNombre());
-        perecederoLocal.setCodigo(perecedero.getCodigo());
-        perecederoLocal.setPrecio(perecedero.getPrecio());
-        perecederoLocal.setCantidad(perecedero.getCantidad());
-        perecederoLocal.setFechaVencimiento(perecedero.getFechaVencimiento());
-        */
+        if (perecedero.getCodigo().equals(resultado.getCodigo())) {
+            perecederosRespository.save(perecedero);
+            return true;
+        }
         return false;
     }
 
@@ -118,7 +97,7 @@ public class ServicioPerecedero {
         try {
             // Convertir la lista a un JsonNode
             objectMapper.registerModule(new JavaTimeModule());
-            return objectMapper.valueToTree(perecederos);
+            return objectMapper.valueToTree(perecederosRespository.findAll());
         } catch (Exception e) {
             e.printStackTrace();
             return objectMapper.nullNode();
@@ -127,8 +106,8 @@ public class ServicioPerecedero {
     }
 
     public JsonNode listarPerecederosPorFiltro(String nombre, Integer codigo, Double precio, Integer cantidad, LocalDateTime fechaVencimiento) {
-        ArrayList<Perecedero> perecederoFiltrado = new ArrayList<>();
-        ArrayList<Perecedero> listaAuxiliar;
+        List<Perecedero> perecederoFiltrado = new ArrayList<>();
+        List<Perecedero> listaAuxiliar;
 
         if (nombre != null){
             listaAuxiliar = listarPerecederoPorNombre(nombre);
@@ -150,54 +129,24 @@ public class ServicioPerecedero {
         return objectMapper.valueToTree(perecederoFiltrado);
     }
 
-    private ArrayList<Perecedero> listarPerecederoPorNombre(String nombre) {
-        ArrayList<Perecedero> resultados = new ArrayList<>();
-        for (Perecedero perecedero : perecederos){
-            if (nombre.equals(perecedero.getNombre())) {
-                resultados.add(perecedero);
-            }
-        }
-        return resultados;
+    private List<Perecedero> listarPerecederoPorNombre(String nombre) {
+        return perecederosRespository.findByNombre(nombre);
     }
 
-    private ArrayList<Perecedero> listarPerecederoPorCodigo(Integer codigo) {
-        ArrayList<Perecedero> resultados = new ArrayList<>();
-        for (Perecedero perecedero : perecederos){
-            if (codigo.equals(perecedero.getCodigo())) {
-                resultados.add(perecedero);
-            }
-        }
-        return resultados;
+    private List<Perecedero> listarPerecederoPorCodigo(Integer codigo) {
+        return perecederosRespository.findByCodigo(codigo);
     }
 
-    private ArrayList<Perecedero> listarPerecederoPorPrecio(Double precio) {
-        ArrayList<Perecedero> resultados = new ArrayList<>();
-        for (Perecedero perecedero : perecederos){
-            if (precio.equals(perecedero.getPrecio())) {
-                resultados.add(perecedero);
-            }
-        }
-        return resultados;
+    private List<Perecedero> listarPerecederoPorPrecio(Double precio) {
+        return perecederosRespository.findByPrecio(precio);
     }
 
-    private ArrayList<Perecedero> listarPerecederoPorCantidad(Integer cantidad) {
-        ArrayList<Perecedero> resultados = new ArrayList<>();
-        for (Perecedero perecedero : perecederos){
-            if (cantidad.equals(perecedero.getCantidad())) {
-                resultados.add(perecedero);
-            }
-        }
-        return resultados;
+    private List<Perecedero> listarPerecederoPorCantidad(Integer cantidad) {
+        return perecederosRespository.findByCantidad(cantidad);
     }
 
-    private ArrayList<Perecedero> listarPerecederoPorVencimiento(LocalDateTime fechaVencimiento) {
-        ArrayList<Perecedero> resultados = new ArrayList<>();
-        for (Perecedero perecedero : perecederos){
-            if (fechaVencimiento.equals(perecedero.getFechaVencimiento())) {
-                resultados.add(perecedero);
-            }
-        }
-        return resultados;
+    private List<Perecedero> listarPerecederoPorVencimiento(LocalDateTime fechaVencimiento) {
+        return perecederosRespository.findByFechaVencimiento(fechaVencimiento);
     }
 
 }
