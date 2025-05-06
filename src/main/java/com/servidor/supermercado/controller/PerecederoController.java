@@ -34,8 +34,8 @@ public class PerecederoController {
             return ResponseEntity.badRequest().body(errores);
         }
 
-        boolean agregado = servicioPerecedero.agregarPerecedero(perecedero);
-        if (agregado) {
+        Perecedero agregado = servicioPerecedero.agregarPerecedero(perecedero);
+        if (agregado != null) {
             return ResponseEntity.ok("Agregado correctamente");
         } else {
             return ResponseEntity.internalServerError().body("No fue posible agregar");

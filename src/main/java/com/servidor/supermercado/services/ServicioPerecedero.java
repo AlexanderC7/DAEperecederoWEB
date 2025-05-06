@@ -4,15 +4,21 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servidor.supermercado.model.Perecedero;
+import com.servidor.supermercado.repositories.PerecederosRespository;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Getter
+@Service
 public class ServicioPerecedero {
 
-    private ArrayList<Perecedero> perecederos = new ArrayList<>();
+    @Autowired
+    private PerecederosRespository perecederosRespository;
+
     private ObjectMapper objectMapper = new ObjectMapper();
     private Perecedero resultado;
 
@@ -82,8 +88,8 @@ public class ServicioPerecedero {
         return null;
     }
 
-    public boolean agregarPerecedero(Perecedero perecedero){
-        return perecederos.add(perecedero);
+    public Perecedero agregarPerecedero(Perecedero perecedero){
+        return perecederosRespository.save(perecedero);
     }
 
     public boolean eliminarPerecedero(Integer codigo) {
@@ -96,16 +102,14 @@ public class ServicioPerecedero {
     }
 
     public boolean actualizarPerecedero(Perecedero perecedero){
-        for (Perecedero perecederoLocal : perecederos){
-            if (resultado.equals(perecederoLocal)) {
-                perecederoLocal.setNombre(perecedero.getNombre());
-                perecederoLocal.setCodigo(perecedero.getCodigo());
-                perecederoLocal.setPrecio(perecedero.getPrecio());
-                perecederoLocal.setCantidad(perecedero.getCantidad());
-                perecederoLocal.setFechaVencimiento(perecedero.getFechaVencimiento());
-                return true;
-            }
-        }
+        perecederosRespository
+        /*
+        perecederoLocal.setNombre(perecedero.getNombre());
+        perecederoLocal.setCodigo(perecedero.getCodigo());
+        perecederoLocal.setPrecio(perecedero.getPrecio());
+        perecederoLocal.setCantidad(perecedero.getCantidad());
+        perecederoLocal.setFechaVencimiento(perecedero.getFechaVencimiento());
+        */
         return false;
     }
 
