@@ -3,6 +3,7 @@ package com.servidor.supermercado.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.servidor.supermercado.model.Perecedero;
 import com.servidor.supermercado.services.ServicioPerecedero;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/perecederos")
 public class PerecederoController {
 
-    private final ServicioPerecedero servicioPerecedero = new ServicioPerecedero();
+    @Autowired
+    private ServicioPerecedero servicioPerecedero;
 
     @GetMapping("/healthStatus")
     public ResponseEntity<String> devolverEstado() {
