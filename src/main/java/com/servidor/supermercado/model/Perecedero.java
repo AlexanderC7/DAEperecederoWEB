@@ -1,6 +1,8 @@
 package com.servidor.supermercado.model;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,10 +16,13 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Perecedero {
+
     @NotBlank(message = "El nombre no puede estar vacío")
     private String nombre;
 
+    @Id
     @NotNull(message = "El código es obligatorio")
     @Positive(message = "El código debe ser un número positivo")
     private Integer codigo;
