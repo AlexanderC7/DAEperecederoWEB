@@ -28,7 +28,7 @@ export function AgregarPerecedero() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/perecederos", {
+      const res = await fetch("http://localhost:8080/perecederos/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

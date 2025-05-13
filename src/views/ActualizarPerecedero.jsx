@@ -29,7 +29,7 @@ function ActualizarPerecedero() {
 
   const handleActualizar = async () => {
     try {
-      await axios.put('http://localhost:8080/perecederos', perecedero);
+      await axios.put('http://localhost:8080/perecederos/', perecedero);
       setMensaje('Perecedero actualizado correctamente.');
     } catch (error) {
       setMensaje('Error al actualizar perecedero.');

@@ -13,7 +13,7 @@ const ListarConFiltroPerecederos = () => {
 
   const manejarListadoPorFiltro = async () => {
     try {
-      let url = 'http://localhost:8080/perecederos';
+      let url = 'http://localhost:8080/perecederos/';
       if (filtro && valorFiltro) {
         url += `?${filtro}=${encodeURIComponent(valorFiltro)}`;
       }

@@ -13,7 +13,7 @@ const ListarPerecederos = () => {
 
   const manejarListado = async () => {
     try {
-      let url = 'http://localhost:8080/perecederos';
+      let url = 'http://localhost:8080/perecederos/';
       if (parametro && valor) {
         url += `?${parametro}=${encodeURIComponent(valor)}`;
       }
