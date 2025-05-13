@@ -27,7 +27,7 @@ namespace SolicitudCliente.vista
             {
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos");
+                var request = new RestRequest("/perecederos/");
 
                 if (cmbParametro.SelectedIndex == 1)
                 {

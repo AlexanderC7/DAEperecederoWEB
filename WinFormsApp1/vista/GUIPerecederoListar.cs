@@ -29,7 +29,7 @@ namespace SolicitudCliente
                 lblStatus.Text = "";
                 var options = new RestClientOptions("http://localhost:8080");
                 var client = new RestClient(options);
-                var request = new RestRequest("/perecederos");
+                var request = new RestRequest("/perecederos/");
 
                 var response = client.Get(request);
 
