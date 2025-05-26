@@ -79,7 +79,7 @@ namespace SolicitudCliente
 
         private void GUIPerecederoListar_Load_1(object sender, EventArgs e)
         {
-            listarPerecederos();
+        
         }
     }
 

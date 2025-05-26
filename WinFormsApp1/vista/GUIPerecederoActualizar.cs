@@ -87,35 +87,43 @@ namespace SolicitudCliente
 
             });
 
-            var response = client.Put(request);
+            try
+            {
+                var response = client.Put(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                // Mostrar mensaje de éxito
-                MessageBox.Show("Producto actualizado con éxito", "Estado de actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    // Mostrar mensaje de éxito
+                    MessageBox.Show("Producto actualizado con éxito", "Estado de actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar los campos después de agregar el producto
-                txtNombre.Clear();
-                txtCodigo.Clear();
-                txtPrecio.Clear();
-                txtCantidad.Clear();
-                dateVencimiento.Value = DateTime.Today;
+                    // Limpiar los campos después de agregar el producto
+                    txtNombre.Clear();
+                    txtCodigo.Clear();
+                    txtPrecio.Clear();
+                    txtCantidad.Clear();
+                    dateVencimiento.Value = DateTime.Today;
 
-                lblEstadoConsulta.Text = "Producto actualizado!";
-                lblEstadoConsulta.ForeColor = Color.Turquoise;
+                    lblEstadoConsulta.Text = "Producto actualizado!";
+                    lblEstadoConsulta.ForeColor = Color.Turquoise;
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    MessageBox.Show("Producto no encontrado.");
+                }
+                else
+                {
+                    MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
+                }
+
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                MessageBox.Show("Solicitud incorrecta: faltan parámetros.");
+            catch (Exception ex) {
+                MessageBox.Show("Ha ocurrido un error al actualizar"  + ex, "Estado de actualización", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                MessageBox.Show("Producto no encontrado.");
-            }
-            else
-            {
-                MessageBox.Show($"Error en la solicitud: {response.StatusCode}");
-            }
+            
 
         }
 
@@ -174,7 +182,8 @@ namespace SolicitudCliente
                     // Deserializar el JSON a un objeto Perecedero
                     try
                     {
-                        perecedero = JsonSerializer.Deserialize<model.Perecedero>(response.Content);
+                        perecedero = JsonSerializer.Deserialize<Perecedero>(response.Content);
+
                         if (perecedero != null)
                         {
                             txtNombre.Text = perecedero.nombre;
@@ -189,7 +198,7 @@ namespace SolicitudCliente
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Procesamiento de respuesta incompleta", "Fallo de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Procesamiento de respuesta incompleta" + ex, "Fallo de consulta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
 
@@ -209,7 +218,7 @@ namespace SolicitudCliente
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fallo al realizar la consulta", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fallo al realizar la consulta" + ex, "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
