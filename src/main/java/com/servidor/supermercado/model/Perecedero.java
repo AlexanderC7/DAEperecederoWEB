@@ -1,5 +1,6 @@
 package com.servidor.supermercado.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import javax.validation.constraints.*;
@@ -14,18 +15,14 @@ import java.util.List;
 public class Perecedero {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "perecedero_seq")
-    @SequenceGenerator(name = "perecedero_seq", sequenceName = "PERECEDERO_SEQ", allocationSize = 1)
-    private Long id;
+    @Column(name = "codigo", nullable = false, unique = true)
+    @NotNull(message = "El código es obligatorio")
+    @Positive(message = "El código debe ser un número positivo")
+    private Integer codigo;
 
     @NotBlank(message = "El nombre no puede estar vacío")
     @Column(nullable = false)
     private String nombre;
-
-    @Column(unique = true, nullable = false)
-    @NotNull(message = "El código es obligatorio")
-    @Positive(message = "El código debe ser un número positivo")
-    private Integer codigo;
 
     @NotNull(message = "El precio es obligatorio")
     @PositiveOrZero(message = "El precio debe ser cero o positivo")
@@ -40,5 +37,6 @@ public class Perecedero {
     private LocalDateTime fechaVencimiento;
 
     @OneToMany(mappedBy = "perecedero", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Lote> lotes;
 }

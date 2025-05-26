@@ -1,6 +1,7 @@
 package com.servidor.supermercado.controller;
 
 import com.servidor.supermercado.model.Lote;
+import com.servidor.supermercado.model.LoteId;
 import com.servidor.supermercado.services.ServicioLote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,10 @@ public class LoteController {
     @Autowired
     private ServicioLote servicioLote;
 
-    @PostMapping("/{perecederoId}")
+    // Crear un nuevo lote
+    @PostMapping("/{perecederoCodigo}")
     public ResponseEntity<?> agregarLote(
-            @PathVariable Long perecederoId,
+            @PathVariable Integer perecederoCodigo,
             @Valid @RequestBody Lote lote,
             BindingResult result) {
 
@@ -34,18 +36,20 @@ public class LoteController {
             return ResponseEntity.badRequest().body(errores);
         }
 
-        Lote creado = servicioLote.guardarLote(perecederoId, lote);
+        Lote creado = servicioLote.guardarLote(perecederoCodigo, lote);
         if (creado != null) {
             return ResponseEntity.ok("Lote agregado correctamente");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encontró el Perecedero con ID: " + perecederoId);
+                    .body("No se encontró el Perecedero con código: " + perecederoCodigo);
         }
     }
 
-    @PutMapping("/{id}")
+    // Actualizar un lote
+    @PutMapping("/{numLote}/{perecederoCodigo}")
     public ResponseEntity<?> actualizarLote(
-            @PathVariable Long id,
+            @PathVariable Integer numLote,
+            @PathVariable Integer perecederoCodigo,
             @Valid @RequestBody Lote lote,
             BindingResult result) {
 
@@ -56,6 +60,7 @@ public class LoteController {
             return ResponseEntity.badRequest().body(errores);
         }
 
+        LoteId id = new LoteId(numLote, perecederoCodigo);
         boolean actualizado = servicioLote.actualizarLote(id, lote);
         if (actualizado) {
             return ResponseEntity.ok("Lote actualizado correctamente");
@@ -64,22 +69,29 @@ public class LoteController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerLotePorId(@PathVariable Long id) {
+    // Obtener un lote por ID compuesto
+    @GetMapping("/{numLote}/{perecederoCodigo}")
+    public ResponseEntity<?> obtenerLotePorId(
+            @PathVariable Integer numLote,
+            @PathVariable Integer perecederoCodigo) {
+
+        LoteId id = new LoteId(numLote, perecederoCodigo);
         Optional<Lote> lote = servicioLote.buscarPorId(id);
         return lote.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping("/perecedero/{perecederoId}")
-    public ResponseEntity<?> obtenerLotesPorPerecedero(@PathVariable Long perecederoId) {
-        List<Lote> lotes = servicioLote.buscarPorPerecedero(perecederoId);
+    // Obtener lotes por perecedero
+    @GetMapping("/perecedero/{perecederoCodigo}")
+    public ResponseEntity<?> obtenerLotesPorPerecedero(@PathVariable Integer perecederoCodigo) {
+        List<Lote> lotes = servicioLote.buscarPorPerecedero(perecederoCodigo);
         if (lotes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(lotes);
     }
 
+    // Listar todos los lotes
     @GetMapping("/")
     public ResponseEntity<?> listarTodos() {
         List<Lote> lotes = servicioLote.listarTodos();
@@ -89,8 +101,13 @@ public class LoteController {
         return ResponseEntity.ok(lotes);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarLote(@PathVariable Long id) {
+    // Eliminar lote
+    @DeleteMapping("/{numLote}/{perecederoCodigo}")
+    public ResponseEntity<?> eliminarLote(
+            @PathVariable Integer numLote,
+            @PathVariable Integer perecederoCodigo) {
+
+        LoteId id = new LoteId(numLote, perecederoCodigo);
         boolean eliminado = servicioLote.eliminarLote(id);
         if (eliminado) {
             return ResponseEntity.ok("Lote eliminado correctamente");

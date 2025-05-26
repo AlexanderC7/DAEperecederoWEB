@@ -1,8 +1,11 @@
 package com.servidor.supermercado.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -11,20 +14,30 @@ import javax.validation.constraints.*;
 @Table(name = "LOTE")
 public class Lote {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lote_seq")
-    @SequenceGenerator(name = "lote_seq", sequenceName = "LOTE_SEQ", allocationSize = 1)
-    private Long id;
+    @JsonIgnore
+    @EmbeddedId
+    private LoteId id;
 
-    @NotNull(message = "El número de lote es obligatorio")
+    @Transient // Este campo no se guarda directamente en la base de datos
     private Integer numLote;
 
     @NotBlank(message = "El proveedor no puede estar vacío")
     private String proveedor;
 
+    @NotNull(message = "La fecha de abastecimiento es obligatoria")
+    @Column(name = "fecha_abastecimiento", nullable = false)
+    private LocalDateTime fechaAbastecimiento;
+
+    @MapsId("perecederoCodigo")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "perecedero_id", nullable = false)
+    @JoinColumn(name = "perecedero_codigo", nullable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonBackReference
     private Perecedero perecedero;
+
+    // Getter personalizado para exponer numLote directamente
+    public Integer getNumLote() {
+        return id != null ? id.getNumLote() : null;
+    }
 }

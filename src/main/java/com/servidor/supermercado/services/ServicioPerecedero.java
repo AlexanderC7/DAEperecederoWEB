@@ -85,10 +85,15 @@ public class ServicioPerecedero {
     }
 
     public boolean actualizarPerecedero(Perecedero perecedero){
-        if (perecedero.getCodigo().equals(resultado.getCodigo())) {
-            perecederosRespository.save(perecedero);
-            return true;
+        Optional<Perecedero> perecederoEncontrado = perecederosRespository.findFirstByCodigo(resultado.getCodigo());
+        if (perecederoEncontrado.isPresent()) {
+            if (perecederoEncontrado.get().getCodigo().equals(perecedero.getCodigo())) {
+                perecederosRespository.save(perecedero);
+                return true;
+            }
         }
+
+
         return false;
     }
 
