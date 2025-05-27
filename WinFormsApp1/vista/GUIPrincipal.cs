@@ -11,26 +11,6 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        private void btnGet_Click(object sender, EventArgs e)
-        {
-            var options = new RestClientOptions("http://localhost:8080");
-            var client = new RestClient(options);
-            var request = new RestRequest("/employees/", Method.Get);
-
-            var response = client.Get(request);
-
-        }
-
-        private void btnSet_Click(object sender, EventArgs e)
-        {
-
-            var options = new RestClientOptions("http://localhost:8080");
-            var client = new RestClient(options);
-            var request = new RestRequest("/employees/");
-
-            var response = client.Post(request);
-            MessageBox.Show("Response: " + response.StatusCode);
-        }
 
         private void Perecedero_Load(object sender, EventArgs e)
         {
@@ -106,6 +86,42 @@ namespace WinFormsApp1
         {
             GUIPerecederoListarFiltro gUIPerecederoListarFiltro = new GUIPerecederoListarFiltro();
             gUIPerecederoListarFiltro.Show();
+        }
+
+        private void menuItemLoteAdicionar_Click(object sender, EventArgs e)
+        {
+            GUILoteAgregar gUILoteAgregar = new GUILoteAgregar();
+            gUILoteAgregar.Show();
+        }
+
+        private void menuItemLoteActualizar_Click(object sender, EventArgs e)
+        {
+            GUILoteActualizar gUILoteActualizar = new GUILoteActualizar();
+            gUILoteActualizar.Show();
+        }
+
+        private void menuItemLoteBuscar_Click(object sender, EventArgs e)
+        {
+            GUILoteBuscar gUILoteBuscar = new GUILoteBuscar();
+            gUILoteBuscar.Show();
+        }
+
+        private void menuItemLoteEliminar_Click(object sender, EventArgs e)
+        {
+            GUILoteEliminar gUILoteEliminar = new GUILoteEliminar();
+            gUILoteEliminar.Show();
+        }
+
+        private void menuItemLoteListar_Click(object sender, EventArgs e)
+        {
+            GUILoteListar gUILoteListar = new GUILoteListar();
+            gUILoteListar.Show();
+        }
+
+        private void menuItemLoteListarFiltro_Click(object sender, EventArgs e)
+        {
+            GUILoteListarFiltro gUILoteListarFiltro = new GUILoteListarFiltro();
+            gUILoteListarFiltro.Show();
         }
     }
 }

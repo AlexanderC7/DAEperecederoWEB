@@ -30,13 +30,13 @@
         {
             btnCerrar = new Button();
             btnCrear = new Button();
-            txtCantidad = new TextBox();
-            lblCantidad = new Label();
-            dateVencimiento = new DateTimePicker();
-            lblCaducidad = new Label();
             txtCodigo = new TextBox();
+            lblCantidad = new Label();
+            dateAbastecimiento = new DateTimePicker();
+            lblCaducidad = new Label();
+            txtNum = new TextBox();
             lblCodigo = new Label();
-            txtNombre = new TextBox();
+            txtProveedor = new TextBox();
             lblNombre = new Label();
             lblTitulo = new Label();
             SuspendLayout();
@@ -62,14 +62,15 @@
             btnCrear.TabIndex = 24;
             btnCrear.Text = "Agregar";
             btnCrear.UseVisualStyleBackColor = false;
+            btnCrear.Click += btnCrear_Click;
             // 
-            // txtCantidad
+            // txtCodigo
             // 
-            txtCantidad.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCantidad.Location = new Point(119, 440);
-            txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(240, 31);
-            txtCantidad.TabIndex = 23;
+            txtCodigo.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtCodigo.Location = new Point(119, 440);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new Size(240, 31);
+            txtCodigo.TabIndex = 23;
             // 
             // lblCantidad
             // 
@@ -82,15 +83,15 @@
             lblCantidad.TabIndex = 22;
             lblCantidad.Text = "Código del perecedero";
             // 
-            // dateVencimiento
+            // dateAbastecimiento
             // 
-            dateVencimiento.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateVencimiento.Format = DateTimePickerFormat.Short;
-            dateVencimiento.Location = new Point(119, 324);
-            dateVencimiento.Name = "dateVencimiento";
-            dateVencimiento.Size = new Size(240, 31);
-            dateVencimiento.TabIndex = 21;
-            dateVencimiento.Value = new DateTime(2025, 3, 30, 12, 11, 40, 0);
+            dateAbastecimiento.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateAbastecimiento.Format = DateTimePickerFormat.Short;
+            dateAbastecimiento.Location = new Point(119, 324);
+            dateAbastecimiento.Name = "dateAbastecimiento";
+            dateAbastecimiento.Size = new Size(240, 31);
+            dateAbastecimiento.TabIndex = 21;
+            dateAbastecimiento.Value = new DateTime(2025, 3, 30, 12, 11, 40, 0);
             // 
             // lblCaducidad
             // 
@@ -102,13 +103,13 @@
             lblCaducidad.TabIndex = 20;
             lblCaducidad.Text = "Fecha de abastecimiento";
             // 
-            // txtCodigo
+            // txtNum
             // 
-            txtCodigo.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCodigo.Location = new Point(119, 231);
-            txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new Size(240, 31);
-            txtCodigo.TabIndex = 17;
+            txtNum.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNum.Location = new Point(119, 231);
+            txtNum.Name = "txtNum";
+            txtNum.Size = new Size(240, 31);
+            txtNum.TabIndex = 17;
             // 
             // lblCodigo
             // 
@@ -120,13 +121,13 @@
             lblCodigo.TabIndex = 16;
             lblCodigo.Text = "Número lote";
             // 
-            // txtNombre
+            // txtProveedor
             // 
-            txtNombre.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNombre.Location = new Point(119, 151);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(240, 31);
-            txtNombre.TabIndex = 15;
+            txtProveedor.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProveedor.Location = new Point(119, 151);
+            txtProveedor.Name = "txtProveedor";
+            txtProveedor.Size = new Size(240, 31);
+            txtProveedor.TabIndex = 15;
             // 
             // lblNombre
             // 
@@ -157,16 +158,17 @@
             ClientSize = new Size(882, 553);
             Controls.Add(btnCerrar);
             Controls.Add(btnCrear);
-            Controls.Add(txtCantidad);
-            Controls.Add(lblCantidad);
-            Controls.Add(dateVencimiento);
-            Controls.Add(lblCaducidad);
             Controls.Add(txtCodigo);
+            Controls.Add(lblCantidad);
+            Controls.Add(dateAbastecimiento);
+            Controls.Add(lblCaducidad);
+            Controls.Add(txtNum);
             Controls.Add(lblCodigo);
-            Controls.Add(txtNombre);
+            Controls.Add(txtProveedor);
             Controls.Add(lblNombre);
             Controls.Add(lblTitulo);
             Name = "GUILoteAgregar";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "GUILoteAgregar";
             Load += GUILoteAgregar_Load;
             ResumeLayout(false);
@@ -177,13 +179,13 @@
 
         private Button btnCerrar;
         private Button btnCrear;
-        private TextBox txtCantidad;
-        private Label lblCantidad;
-        private DateTimePicker dateVencimiento;
-        private Label lblCaducidad;
         private TextBox txtCodigo;
+        private Label lblCantidad;
+        private DateTimePicker dateAbastecimiento;
+        private Label lblCaducidad;
+        private TextBox txtNum;
         private Label lblCodigo;
-        private TextBox txtNombre;
+        private TextBox txtProveedor;
         private Label lblNombre;
         private Label lblTitulo;
     }

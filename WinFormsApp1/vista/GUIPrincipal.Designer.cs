@@ -38,10 +38,6 @@
             menuItemActualizar = new ToolStripMenuItem();
             menuItemListar = new ToolStripMenuItem();
             menuItemListarFiltro = new ToolStripMenuItem();
-            menuAyuda = new ToolStripMenuItem();
-            menuItemAcercade = new ToolStripMenuItem();
-            lblTitulo = new Label();
-            lblTituloTienda = new Label();
             menuLote = new ToolStripMenuItem();
             menuItemLoteAdicionar = new ToolStripMenuItem();
             menuItemLoteBuscar = new ToolStripMenuItem();
@@ -49,6 +45,10 @@
             menuItemLoteActualizar = new ToolStripMenuItem();
             menuItemLoteListar = new ToolStripMenuItem();
             menuItemLoteListarFiltro = new ToolStripMenuItem();
+            menuAyuda = new ToolStripMenuItem();
+            menuItemAcercade = new ToolStripMenuItem();
+            lblTitulo = new Label();
+            lblTituloTienda = new Label();
             menuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -136,6 +136,61 @@
             menuItemListarFiltro.Text = "Listar según filtro";
             menuItemListarFiltro.Click += menuItemListarFiltro_Click;
             // 
+            // menuLote
+            // 
+            menuLote.DropDownItems.AddRange(new ToolStripItem[] { menuItemLoteAdicionar, menuItemLoteBuscar, menuItemLoteEliminar, menuItemLoteActualizar, menuItemLoteListar, menuItemLoteListarFiltro });
+            menuLote.Name = "menuLote";
+            menuLote.Size = new Size(64, 32);
+            menuLote.Text = "Lote";
+            // 
+            // menuItemLoteAdicionar
+            // 
+            menuItemLoteAdicionar.Image = SolicitudCliente.Properties.Resources.icon_agregar;
+            menuItemLoteAdicionar.Name = "menuItemLoteAdicionar";
+            menuItemLoteAdicionar.Size = new Size(315, 32);
+            menuItemLoteAdicionar.Text = "Agregar a perecedero";
+            menuItemLoteAdicionar.Click += menuItemLoteAdicionar_Click;
+            // 
+            // menuItemLoteBuscar
+            // 
+            menuItemLoteBuscar.Image = SolicitudCliente.Properties.Resources.icon_buscar;
+            menuItemLoteBuscar.Name = "menuItemLoteBuscar";
+            menuItemLoteBuscar.Size = new Size(315, 32);
+            menuItemLoteBuscar.Text = "Buscar según perecedero";
+            menuItemLoteBuscar.Click += menuItemLoteBuscar_Click;
+            // 
+            // menuItemLoteEliminar
+            // 
+            menuItemLoteEliminar.Image = SolicitudCliente.Properties.Resources.icon_eliminar;
+            menuItemLoteEliminar.Name = "menuItemLoteEliminar";
+            menuItemLoteEliminar.Size = new Size(315, 32);
+            menuItemLoteEliminar.Text = "Eliminar";
+            menuItemLoteEliminar.Click += menuItemLoteEliminar_Click;
+            // 
+            // menuItemLoteActualizar
+            // 
+            menuItemLoteActualizar.Image = SolicitudCliente.Properties.Resources.icon_actualizar_32;
+            menuItemLoteActualizar.Name = "menuItemLoteActualizar";
+            menuItemLoteActualizar.Size = new Size(315, 32);
+            menuItemLoteActualizar.Text = "Actualizar";
+            menuItemLoteActualizar.Click += menuItemLoteActualizar_Click;
+            // 
+            // menuItemLoteListar
+            // 
+            menuItemLoteListar.Image = SolicitudCliente.Properties.Resources.icon_listar;
+            menuItemLoteListar.Name = "menuItemLoteListar";
+            menuItemLoteListar.Size = new Size(315, 32);
+            menuItemLoteListar.Text = "Listar";
+            menuItemLoteListar.Click += menuItemLoteListar_Click;
+            // 
+            // menuItemLoteListarFiltro
+            // 
+            menuItemLoteListarFiltro.Image = SolicitudCliente.Properties.Resources.icon_calcular;
+            menuItemLoteListarFiltro.Name = "menuItemLoteListarFiltro";
+            menuItemLoteListarFiltro.Size = new Size(315, 32);
+            menuItemLoteListarFiltro.Text = "Listar según filtro";
+            menuItemLoteListarFiltro.Click += menuItemLoteListarFiltro_Click;
+            // 
             // menuAyuda
             // 
             menuAyuda.DropDownItems.AddRange(new ToolStripItem[] { menuItemAcercade });
@@ -148,7 +203,7 @@
             // 
             menuItemAcercade.Image = SolicitudCliente.Properties.Resources.icon_info;
             menuItemAcercade.Name = "menuItemAcercade";
-            menuItemAcercade.Size = new Size(224, 32);
+            menuItemAcercade.Size = new Size(183, 32);
             menuItemAcercade.Text = "Acerca de";
             menuItemAcercade.Click += menuItemAcercade_Click;
             // 
@@ -176,55 +231,6 @@
             lblTituloTienda.TabIndex = 6;
             lblTituloTienda.Text = "Supermercado \"Dónde los electrónicos\"";
             lblTituloTienda.Click += label1_Click_1;
-            // 
-            // menuLote
-            // 
-            menuLote.DropDownItems.AddRange(new ToolStripItem[] { menuItemLoteAdicionar, menuItemLoteBuscar, menuItemLoteEliminar, menuItemLoteActualizar, menuItemLoteListar, menuItemLoteListarFiltro });
-            menuLote.Name = "menuLote";
-            menuLote.Size = new Size(123, 32);
-            menuLote.Text = "Perecedero";
-            // 
-            // menuItemLoteAdicionar
-            // 
-            menuItemLoteAdicionar.Image = SolicitudCliente.Properties.Resources.icon_agregar;
-            menuItemLoteAdicionar.Name = "menuItemLoteAdicionar";
-            menuItemLoteAdicionar.Size = new Size(278, 32);
-            menuItemLoteAdicionar.Text = "Adicionar";
-            // 
-            // menuItemLoteBuscar
-            // 
-            menuItemLoteBuscar.Image = SolicitudCliente.Properties.Resources.icon_buscar;
-            menuItemLoteBuscar.Name = "menuItemLoteBuscar";
-            menuItemLoteBuscar.Size = new Size(278, 32);
-            menuItemLoteBuscar.Text = "Buscar según criterio";
-            // 
-            // menuItemLoteEliminar
-            // 
-            menuItemLoteEliminar.Image = SolicitudCliente.Properties.Resources.icon_eliminar;
-            menuItemLoteEliminar.Name = "menuItemLoteEliminar";
-            menuItemLoteEliminar.Size = new Size(278, 32);
-            menuItemLoteEliminar.Text = "Eliminar";
-            // 
-            // menuItemLoteActualizar
-            // 
-            menuItemLoteActualizar.Image = SolicitudCliente.Properties.Resources.icon_actualizar_32;
-            menuItemLoteActualizar.Name = "menuItemLoteActualizar";
-            menuItemLoteActualizar.Size = new Size(278, 32);
-            menuItemLoteActualizar.Text = "Actualizar";
-            // 
-            // menuItemLoteListar
-            // 
-            menuItemLoteListar.Image = SolicitudCliente.Properties.Resources.icon_listar;
-            menuItemLoteListar.Name = "menuItemLoteListar";
-            menuItemLoteListar.Size = new Size(278, 32);
-            menuItemLoteListar.Text = "Listar";
-            // 
-            // menuItemLoteListarFiltro
-            // 
-            menuItemLoteListarFiltro.Image = SolicitudCliente.Properties.Resources.icon_calcular;
-            menuItemLoteListarFiltro.Name = "menuItemLoteListarFiltro";
-            menuItemLoteListarFiltro.Size = new Size(278, 32);
-            menuItemLoteListarFiltro.Text = "Listar según filtro";
             // 
             // Perecedero
             // 
