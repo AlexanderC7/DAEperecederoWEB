@@ -19,6 +19,7 @@ public class Lote {
     private LoteId id;
 
     @Transient // Este campo no se guarda directamente en la base de datos
+    @NotNull(message = "El número es obligatorio")
     private Integer numLote;
 
     @NotBlank(message = "El proveedor no puede estar vacío")
@@ -37,7 +38,7 @@ public class Lote {
     private Perecedero perecedero;
 
     // Getter personalizado para exponer numLote directamente
-    public Integer getNumLote() {
-        return id != null ? id.getNumLote() : null;
-    }
+//    public Integer getNumLote() {
+//        return id != null ? id.getNumLote() : null;
+//    }
 }
